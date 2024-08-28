@@ -10,6 +10,10 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserController;
 
+//affiliate
+use App\Http\Controllers\affiliate\BiodataController;
+use App\Http\Controllers\affiliate\DashboardAffController;
+
 
 
 /*
@@ -38,3 +42,15 @@ Route::post('/register-proses', [RegisterController::class, 'register_proses'])-
 //admin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/user', [UserController::class, 'index'])->name('user');
+
+    //user
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::delete('/destroy_user/{id}', [UserController::class, 'destroy'])->name('destroy_user');
+    Route::get('/form_user', [UserController::class, 'create'])->name('create_user');
+    Route::post('/form_user', [UserController::class, 'store'])->name('store_user');
+    Route::get('/form_user_edit/{id}', [UserController::class, 'edit'])->name('edit_user');
+    Route::put('/user/update/{id}', [UserController::class, 'update'])->name('update_user');
+
+//affiliate
+Route::get('/dashboard_affiliate', [DashboardAffController::class, 'index'])->name('dashboardAff');
+Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata');

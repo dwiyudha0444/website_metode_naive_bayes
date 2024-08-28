@@ -33,7 +33,7 @@ class LoginController extends Controller
                 if (Auth::user()->role == 'admin') {
                     return redirect()->route('dashboard');
                 } elseif (Auth::user()->role == 'afiliator') {
-                    return redirect()->route('afiliator');
+                    return redirect()->route('dashboardAff');
                 } 
             } else {
                 

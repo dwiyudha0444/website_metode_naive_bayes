@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">User</h4>
-                            <a href="{{ route('store_user') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
                                     <path
@@ -45,17 +45,15 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($users as $use)
                                         <tr>
-                                            <th scope="row">{{ $no++ }}</th>
+                                            <th scope="row"></th>
 
-                                            <td>{{ $use->name }}</td>
-                                            <td>{{ $use->email }}</td>
-                                            <td>{{ $use->role }}</td>
-                                            @if (Auth::user()->role == 'admin')
-                                                <td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
 
-                                                    <form method="POST" action="{{ route('destroy_user', $use->id) }}">
+                                                {{-- <form method="POST" action="{{ route('destroy_user', $use->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
@@ -63,11 +61,9 @@
 
                                                         <a class="btn btn-gradient-primary btn-fw"
                                                             href="{{ url('form_user_edit', $use->id) }}">Edit</a>
-                                                    </form>
-                                                </td>
-                                            @endif
+                                                    </form> --}}
+                                            </td>
                                         </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
