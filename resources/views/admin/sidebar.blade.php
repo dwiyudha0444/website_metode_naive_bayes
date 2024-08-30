@@ -24,13 +24,13 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
                             aria-controls="tables">
-                            <span class="menu-title">Tables</span>
+                            <span class="menu-title">Data</span>
                             <i class="mdi mdi-table-large menu-icon"></i>
                         </a>
                         <div class="collapse" id="tables">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
+                                    <a class="nav-link" href="{{ url('datalatih') }}">Data Latih</a>
                                 </li>
                             </ul>
                         </div>

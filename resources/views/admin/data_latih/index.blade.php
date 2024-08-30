@@ -1,4 +1,4 @@
-@extends('affiliate.index')
+@extends('admin.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -16,8 +16,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Biodata</h4>
-                            <a href="{{ route('biodata_form') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            <h4 class="card-title">User</h4>
+                            <a href="{{ route('store_user') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
                                     <path
@@ -36,11 +36,8 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Nama </th>
-                                        <th> Umur </th>
-                                        <th> Waktu Bergabung</th>
-                                        <th> Produk </th>
-                                        <th> Sosial Media </th>
-                                        <th> Penghasilan </th>
+                                        <th> Email </th>
+                                        <th> Role </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -48,31 +45,28 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($biodata as $bio)
+                                    @foreach ($datalatih as $use)
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
 
-                                            <td>{{ $bio->nama }}</td>
-                                            <td>{{ $bio->umur }}</td>
-                                            <td>{{ $bio->waktu_bergabung }}</td>
-                                            <td>{{ $bio->produk }}</td>
-                                            <td>{{ $bio->sosmed }}</td>
-                                            <td>{{ $bio->penghasilan }}</td>
-                                            <td>
+                                            <td>{{ $use->sosmed }}</td>
+                                            {{-- @if (Auth::user()->role == 'admin')
+                                                <td>
 
-                                                <form method="POST" action="{{ route('biodata_destroy', $bio->id) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-gradient-danger btn-fw"
-                                                        style="font-size: 12px; padding: 15px 12px;">Hapus</button>
+                                                    <form method="POST" action="{{ route('destroy_user', $use->id) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-gradient-danger btn-fw">Hapus</button>
 
-                                                    <a class="btn btn-gradient-primary btn-fw"
-                                                        href="{{ route('biodata_edit', $bio->id) }}">Edit</a>
-                                                </form>
-                                            </td>
+                                                        <a class="btn btn-gradient-primary btn-fw"
+                                                            href="{{ url('form_user_edit', $use->id) }}">Edit</a>
+                                                    </form>
+                                                </td>
+                                            @endif --}}
                                         </tr>
+                                    @endforeach
                                 </tbody>
-                                @endforeach
                             </table>
                         </div>
                     </div>
