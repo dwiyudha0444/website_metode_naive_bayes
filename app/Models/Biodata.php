@@ -17,4 +17,9 @@ class Biodata extends Model
         'sosmed', 
         'penghasilan', 
     ];
+
+    public function datalatih()
+    {
+        return $this->hasMany(DataLatih::class);
+    }
 }

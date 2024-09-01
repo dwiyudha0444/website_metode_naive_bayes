@@ -17,4 +17,9 @@ class DataLatih extends Model
         'produk', 
         'waktu', 
     ];
+
+    public function biodata()
+    {
+        return $this->belongsTo(Biodata::class,'id_biodata');
+    }
 }

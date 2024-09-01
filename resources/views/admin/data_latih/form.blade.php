@@ -1,13 +1,13 @@
-@extends('affiliate.index')
+@extends('admin.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header mt-5">
-                <h3 class="page-title"> Form </h3>
+                <h3 class="page-title"> Form elements </h3>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Form </li>
+                        <li class="breadcrumb-item active" aria-current="page">Form elements</li>
                     </ol>
                 </nav>
             </div>
@@ -16,62 +16,65 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Edit Biodata</h4>
+                            <h4 class="card-title">Tambah Data Latih</h4>
                             <p class="card-description"> </p>
-                            <form class="forms-sample" method="POST" action="{{ route('biodata_update', $biodata->id) }}"
+                            <form class="forms-sample" method="POST" action="{{ route('store_data_latih') }}"
                                 enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
 
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Nama</label>
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="id_biodata" value="{{ $biodata->nama }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
+                                        <select class="form-select" name="id_biodata">
+                                            <option selected>-- Pilih biodata --</option>
+                                            @foreach($rel_biodata as $ob)
+                                            @php
+                                            $sel2 = (old('id_biodata') == $ob->id)? 'selected':'';
+                                            @endphp
+                                            <option value="{{ $ob->id }}" {{ $sel2 }}>{{ $ob->nama }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Umur</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Sosial Media</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="umur" value="{{ $biodata->umur }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
+                                        <input type="text" name="sosmed" class="form-control" id="exampleInputEmail2">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Waktu Bergabung</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Keuntungan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="waktu_bergabung" value="{{ $biodata->waktu_bergabung }}"
-                                            class="form-control" id="exampleInputMobile">
+                                        <input type="text" name="keuntungan" class="form-control"
+                                            id="exampleInputEmail2">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Produk</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Pengaruh Event</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="produk" value="{{ $biodata->produk }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
+                                        <input type="text" name="pengaruh_event" class="form-control"
+                                            id="exampleInputEmail2">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Sosial Media</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Produk</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="sosmed" value="{{ $biodata->sosmed }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
+                                        <input type="text" name="produk" class="form-control" id="exampleInputEmail2">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Penghasilan</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Waktu</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="penghasilan" value="{{ $biodata->penghasilan }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
+                                        <input type="date" name="waktu" class="form-control" id="exampleInputEmail2">
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-gradient-primary me-2">Edit</button>
+                                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
                         </div>

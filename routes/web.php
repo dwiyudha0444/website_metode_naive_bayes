@@ -42,7 +42,13 @@ Route::post('/register-proses', [RegisterController::class, 'register_proses'])-
 
 //admin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/datalatih', [DataLatihController::class, 'index'])->name('datalatih');
+    //data latih
+    Route::get('/datalatih', [DataLatihController::class, 'index'])->name('datalatih');
+
+    Route::get('/form_data_latih', [DataLatihController::class, 'create'])->name('create_data_latih');
+    Route::post('/form_data_latih', [DataLatihController::class, 'store'])->name('store_data_latih');
+
+    
 
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');

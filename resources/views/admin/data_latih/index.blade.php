@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">User</h4>
-                            <a href="{{ route('store_user') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            <a href="{{ route('store_data_latih') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
                                     <path
@@ -36,8 +36,11 @@
                                     <tr>
                                         <th> # </th>
                                         <th> Nama </th>
-                                        <th> Email </th>
-                                        <th> Role </th>
+                                        <th> Sosial Media </th>
+                                        <th> Keuntungan </th>
+                                        <th> Pengaruh Event </th>
+                                        <th> Produk </th>
+                                        <th> Waktu </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -49,7 +52,13 @@
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
 
+                                            <td>{{ $use->biodata->nama }}</td>
                                             <td>{{ $use->sosmed }}</td>
+                                            <td>{{ $use->keuntungan }}</td>
+                                            <td>{{ $use->pengaruh_event }}</td>
+                                            <td>{{ $use->produk }}</td>
+                                            <td>{{ $use->waktu }}</td>
+
                                             {{-- @if (Auth::user()->role == 'admin')
                                                 <td>
 
