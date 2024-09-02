@@ -4,54 +4,19 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\DB;
 
-class NaiveBayesHelpers
-{
-    public static function getBerpengaruh($column)
-    {
-        // Hitung jumlah baris dengan kelas 'B'
-        $berpengaruhCount = DB::table('datalatih')
-                              ->where('kelas', 'B')
-                              ->count();
-
-        // Hitung total jumlah baris di tabel
-        $totalCount = DB::table('datalatih')
-                        ->count();
-
-        $probabilitas = $berpengaruhCount / $totalCount;
-        
-        return $probabilitas;
-
-    }
-
-    public static function getTidakBerpengaruh($column)
-    {
-        // Hitung jumlah baris dengan kelas 'B'
-        $tidakBerpengaruhCount = DB::table('datalatih')
-                              ->where('kelas', 'TB')
-                              ->count();
-
-        // Hitung total jumlah baris di tabel
-        $totalCount = DB::table('datalatih')
-                        ->count();
-
-        $probabilitas = $tidakBerpengaruhCount / $totalCount;
-        
-        return $probabilitas;
-
-    }
-
-    //Soaial Media Kelas Berpengaruh
+class SosmedHelpers{
+    //Soaial Media Kelas Tidak Berpengaruh
     public static function getTiktok($column)
     {
         // Hitung jumlah data TikTok
         $tiktokCount = DB::table('datalatih')
-                        ->where('kelas', 'B')
+                        ->where('kelas', 'TB')
                         ->count();
 
         // Hitung jumlah data TikTok yang berpengaruh
         $tiktokBerpengaruhCount = DB::table('datalatih')
                                     ->where('sosmed', 'tiktok')
-                                    ->where('kelas', 'B')
+                                    ->where('kelas', 'TB')
                                     ->count();
 
         // Cek apakah $tiktokCount adalah nol
@@ -68,14 +33,14 @@ class NaiveBayesHelpers
     public static function getInstagram($column)
     {
         // Hitung jumlah data TikTok
-        $instagramCount = DB::table('datalatih')
-                        ->where('kelas', 'B')
+        $instagramCount =DB::table('datalatih')
+                        ->where('kelas', 'TB')
                         ->count();
 
         // Hitung jumlah data TikTok yang berpengaruh
         $instagramBerpengaruhCount = DB::table('datalatih')
                                     ->where('sosmed', 'instagram')
-                                    ->where('kelas', 'B')
+                                    ->where('kelas', 'TB')
                                     ->count();
 
         // Cek apakah $tiktokCount adalah nol
@@ -93,13 +58,13 @@ class NaiveBayesHelpers
     {
         // Hitung jumlah data TikTok
         $facebookCount = DB::table('datalatih')
-                        ->where('kelas', 'B')
+                        ->where('kelas', 'TB')
                         ->count();
 
         // Hitung jumlah data TikTok yang berpengaruh
         $facebookBerpengaruhCount = DB::table('datalatih')
                                     ->where('sosmed', 'facebook')
-                                    ->where('kelas', 'B')
+                                    ->where('kelas', 'TB')
                                     ->count();
 
         // Cek apakah $tiktokCount adalah nol
@@ -113,4 +78,3 @@ class NaiveBayesHelpers
 
     }
 }
-

@@ -69,6 +69,7 @@ class DataLatihController extends Controller
             'pengaruh_event' => 'required',
             'produk' => 'required',
             'waktu' => 'required',
+            'kelas' => 'required',
         ]);
 
         DB::table('datalatih')->where('id', $id)->update([
@@ -78,6 +79,7 @@ class DataLatihController extends Controller
             'pengaruh_event' => $request->pengaruh_event, 
             'produk' => $request->produk, 
             'waktu' => $request->waktu, 
+            'kelas' => $request->kelas, 
             'updated_at' => now(),
         ]);
 

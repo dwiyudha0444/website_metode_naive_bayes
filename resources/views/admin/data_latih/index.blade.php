@@ -41,6 +41,7 @@
                                         <th> Pengaruh Event </th>
                                         <th> Produk </th>
                                         <th> Waktu </th>
+                                        <th> Kelas </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -58,6 +59,7 @@
                                             <td>{{ $use->pengaruh_event }}</td>
                                             <td>{{ $use->produk }}</td>
                                             <td>{{ $use->waktu }}</td>
+                                            <td>{{ $use->kelas }}</td>
                                             <td>
 
                                                 <form method="POST" action="{{ route('destroy_data_latih', $use->id) }}">
