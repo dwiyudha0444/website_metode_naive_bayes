@@ -13,9 +13,6 @@ class Biodata extends Model
         'nama',
         'umur',
         'waktu_bergabung',
-        'produk',
-        'sosmed', 
-        'penghasilan', 
     ];
 
     public function datalatih()

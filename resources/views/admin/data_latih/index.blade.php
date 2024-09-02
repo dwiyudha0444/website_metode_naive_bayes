@@ -58,21 +58,18 @@
                                             <td>{{ $use->pengaruh_event }}</td>
                                             <td>{{ $use->produk }}</td>
                                             <td>{{ $use->waktu }}</td>
+                                            <td>
 
-                                            {{-- @if (Auth::user()->role == 'admin')
-                                                <td>
+                                                <form method="POST" action="{{ route('destroy_data_latih', $use->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-danger btn-sm">Hapus</button>
 
-                                                    <form method="POST" action="{{ route('destroy_user', $use->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-gradient-danger btn-fw">Hapus</button>
-
-                                                        <a class="btn btn-gradient-primary btn-fw"
-                                                            href="{{ url('form_user_edit', $use->id) }}">Edit</a>
-                                                    </form>
-                                                </td>
-                                            @endif --}}
+                                                    <a class="btn btn-warning btn-sm"
+                                                        href="{{ url('form_data_latih_edit', $use->id) }}">Edit</a>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

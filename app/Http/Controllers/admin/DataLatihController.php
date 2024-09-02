@@ -30,8 +30,10 @@ class DataLatihController extends Controller
             'sosmed' => 'required',
             'keuntungan' => 'required',
             'pengaruh_event' => 'required',
+            'kenaikan_keuntungan' => 'required',
             'produk' => 'required',
             'waktu' => 'required',
+            'kelas' => 'required',
         ]);
     
         // Insert data dari request form
@@ -40,12 +42,53 @@ class DataLatihController extends Controller
             'sosmed' => $request->sosmed,
             'keuntungan' => $request->keuntungan,
             'pengaruh_event' => $request->pengaruh_event, 
+            'kenaikan_keuntungan' => $request->kenaikan_keuntungan,
             'produk' => $request->produk, 
             'waktu' => $request->waktu, 
+            'kelas' => $request->kelas, 
             'updated_at' => now(),
             'created_at' => now(),
         ]);
     
         return redirect()->route('datalatih')->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function edit($id)
+    {
+        $rel_biodata = Biodata::all();
+        $datalatih = DataLatih::find($id);
+        return view('admin.data_latih.form_edit', compact('datalatih','rel_biodata'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'id_biodata' => 'required',
+            'sosmed' => 'required',
+            'keuntungan' => 'required',
+            'pengaruh_event' => 'required',
+            'produk' => 'required',
+            'waktu' => 'required',
+        ]);
+
+        DB::table('datalatih')->where('id', $id)->update([
+            'id_biodata' => $request->id_biodata,
+            'sosmed' => $request->sosmed,
+            'keuntungan' => $request->keuntungan,
+            'pengaruh_event' => $request->pengaruh_event, 
+            'produk' => $request->produk, 
+            'waktu' => $request->waktu, 
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('datalatih')
+            ->with('success', 'Data Berhasil Diubah');
+    }
+
+    public function destroy($id)
+    {
+        $datalatih = DataLatih::findOrFail($id);
+        $datalatih->delete();
+        return redirect('datalatih')->with('success', 'Berhasil Menghapus User');
     }
 }

@@ -47,30 +47,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Produk</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="produk" value="{{ $biodata->produk }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Sosial Media</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="sosmed" value="{{ $biodata->sosmed }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Penghasilan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="penghasilan" value="{{ $biodata->penghasilan }}"
-                                            class="form-control" id="exampleInputMobile" placeholder="Nama">
-                                    </div>
-                                </div>
-
                                 <button type="submit" class="btn btn-gradient-primary me-2">Edit</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>

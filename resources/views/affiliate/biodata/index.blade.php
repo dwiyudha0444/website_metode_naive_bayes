@@ -38,9 +38,6 @@
                                         <th> Nama </th>
                                         <th> Umur </th>
                                         <th> Waktu Bergabung</th>
-                                        <th> Produk </th>
-                                        <th> Sosial Media </th>
-                                        <th> Penghasilan </th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -55,9 +52,6 @@
                                             <td>{{ $bio->nama }}</td>
                                             <td>{{ $bio->umur }}</td>
                                             <td>{{ $bio->waktu_bergabung }}</td>
-                                            <td>{{ $bio->produk }}</td>
-                                            <td>{{ $bio->sosmed }}</td>
-                                            <td>{{ $bio->penghasilan }}</td>
                                             <td>
 
                                                 <form method="POST" action="{{ route('biodata_destroy', $bio->id) }}">

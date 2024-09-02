@@ -26,18 +26,12 @@ class BiodataController extends Controller
         $request->validate([
             'nama' => 'required|max:45',
             'umur' => 'required',
-            'produk' => 'required',
-            'sosmed' => 'required',
-            'penghasilan' => 'required',
             'waktu_bergabung' => 'required',
         ]);
         
         DB::table('biodata')->insert([
             'nama' => $request->nama,
             'umur' => $request->umur,
-            'produk' => $request->produk,
-            'sosmed' => $request->sosmed,
-            'penghasilan' => $request->penghasilan,
             'waktu_bergabung' => $request->waktu_bergabung,
             'updated_at' => now(),
             'created_at' => now(),

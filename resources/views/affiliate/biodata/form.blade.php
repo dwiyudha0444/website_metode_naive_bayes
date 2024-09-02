@@ -37,31 +37,7 @@
                                             placeholder="Umur">
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Produk</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="produk" class="form-control" id="exampleInputMobile"
-                                            placeholder="Produk">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Sosial Media</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="sosmed" class="form-control" id="exampleInputMobile"
-                                            placeholder="Sosial Media">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Penghasilan</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="penghasilan" class="form-control"
-                                            id="exampleInputMobile" placeholder="Penghasilan">
-                                    </div>
-                                </div>
-
+                                
                                 <div class="form-group row">
                                     <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Waktu
                                         Bergabung</label>

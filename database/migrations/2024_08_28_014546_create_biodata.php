@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('umur');
             $table->date('waktu_bergabung');
-            $table->string('produk');
-            $table->string('sosmed');
-            $table->integer('penghasilan');
             $table->timestamps();
         });
     }

@@ -27,50 +27,116 @@
                                     <div class="col-sm-9">
                                         <select class="form-select" name="id_biodata">
                                             <option selected>-- Pilih biodata --</option>
-                                            @foreach($rel_biodata as $ob)
-                                            @php
-                                            $sel2 = (old('id_biodata') == $ob->id)? 'selected':'';
-                                            @endphp
-                                            <option value="{{ $ob->id }}" {{ $sel2 }}>{{ $ob->nama }}</option>
+                                            @foreach ($rel_biodata as $ob)
+                                                @php
+                                                    $sel2 = old('id_biodata') == $ob->id ? 'selected' : '';
+                                                @endphp
+                                                <option value="{{ $ob->id }}" {{ $sel2 }}>{{ $ob->nama }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Sosial Media</label>
+                                    <label for="sosmed" class="col-sm-3 col-form-label">Sosial Media</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="sosmed" class="form-control" id="exampleInputEmail2">
+                                        <select name="sosmed" class="form-select" id="sosmed">
+                                            <option value="">-- Pilih Sosial Media --</option>
+                                            <option value="facebook">
+                                                Facebook</option>
+                                            <option value="instagram">
+                                                Instagram</option>
+                                            <option value="tiktok">
+                                                Tiktok</option>
+                                        </select>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Keuntungan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="keuntungan" class="form-control"
-                                            id="exampleInputEmail2">
+                                        <select name="keuntungan" class="form-select" id="keuntungan">
+                                            <option value="">-- Pilih Keuntungan --</option>
+                                            <option value="Lebih dari Rp 1.000.000">
+                                                Lebih dari Rp 1.000.000</option>
+                                            <option value="Lebih dari Rp 500.000">
+                                                Lebih dari Rp 500.000</option>
+                                            <option value="Kurang dari Rp 500.000">
+                                                Kurang dari Rp 500.000</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Pengaruh Event</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="pengaruh_event" class="form-control"
-                                            id="exampleInputEmail2">
+                                        <select name="pengaruh_event" class="form-select" id="pengaruh_event">
+                                            <option value="">-- Pilih Pengaruh Event--</option>
+                                            <option value="ya">
+                                                ya</option>
+                                            <option value="tidak">
+                                                tidak</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Kenaikan Keuntungan</label>
+                                    <div class="col-sm-9">
+                                        <select name="kenaikan_keuntungan" class="form-select" id="kenaikan_keuntungan">
+                                            <option value="">-- Pilih Kenaikan Keuntungan --</option>
+                                            <option value="Lebih dari Rp 1.000.000">
+                                                Lebih dari Rp 200.000</option>
+                                            <option value="Lebih dari Rp 500.000">
+                                                Lebih dari Rp 50.000</option>
+                                            <option value="Kurang dari Rp 500.000">
+                                                Kurang dari Rp 150.000</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Produk</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="produk" class="form-control" id="exampleInputEmail2">
+                                        <select name="produk" class="form-select" id="produk">
+                                            <option value="">-- Pilih Produk--</option>
+                                            <option value="FAF">
+                                                FAF</option>
+                                            <option value="KPD">
+                                                KPD</option>
+                                            <option value="PSH">
+                                                PSH</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Waktu</label>
                                     <div class="col-sm-9">
-                                        <input type="date" name="waktu" class="form-control" id="exampleInputEmail2">
+                                        <select name="waktu" class="form-select" id="waktu">
+                                            <option value="">-- Pilih Produk--</option>
+                                            <option value="1">
+                                                1</option>
+                                            <option value="2">
+                                                2</option>
+                                            <option value="3">
+                                                3</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Kelas</label>
+                                    <div class="col-sm-9">
+                                        <select name="kelas" class="form-select" id="kelas">
+                                            <option value="">-- Pilih Kelas --</option>
+                                            <option value="B">
+                                                B</option>
+                                            <option value="TB">
+                                                TB</option>
+                                        </select>
                                     </div>
                                 </div>
 

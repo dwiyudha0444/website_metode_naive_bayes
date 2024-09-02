@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('sosmed'); 
             $table->string('keuntungan');
             $table->string('pengaruh event');
+            $table->string('kenaikan_keuntungan');
             $table->string('produk');
-            $table->date('waktu');
+            $table->integer('waktu');
+            $table->string('kelas');
             $table->timestamps();
         });
     }

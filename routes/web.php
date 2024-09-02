@@ -47,8 +47,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
     Route::get('/form_data_latih', [DataLatihController::class, 'create'])->name('create_data_latih');
     Route::post('/form_data_latih', [DataLatihController::class, 'store'])->name('store_data_latih');
-
-    
+    Route::get('/form_data_latih_edit/{id}', [DataLatihController::class, 'edit'])->name('edit_data_latih');
+    Route::put('/data_latih/update/{id}', [DataLatihController::class, 'update'])->name('update_data_latih');
+    Route::delete('/data_latih_destroy/{id}', [DataLatihController::class, 'destroy'])->name('destroy_data_latih');
 
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');

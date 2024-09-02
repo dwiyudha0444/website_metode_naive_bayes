@@ -14,8 +14,10 @@ class DataLatih extends Model
         'sosmed',
         'keuntungan',
         'pengaruh_event',
+        'kenaikan_keuntungan',
         'produk', 
         'waktu', 
+        'kelas', 
     ];
 
     public function biodata()
