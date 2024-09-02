@@ -10,6 +10,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\DataLatihController;
+use App\Http\Controllers\admin\PrediksiController;
 
 //affiliate
 use App\Http\Controllers\affiliate\BiodataController;
@@ -50,6 +51,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/form_data_latih_edit/{id}', [DataLatihController::class, 'edit'])->name('edit_data_latih');
     Route::put('/data_latih/update/{id}', [DataLatihController::class, 'update'])->name('update_data_latih');
     Route::delete('/data_latih_destroy/{id}', [DataLatihController::class, 'destroy'])->name('destroy_data_latih');
+
+    //prediksi
+    Route::get('/prediksi', [PrediksiController::class, 'index'])->name('prediksi');
 
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');
