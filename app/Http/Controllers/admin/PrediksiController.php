@@ -9,6 +9,8 @@ use App\Helpers\SosmedHelpers;
 use App\Helpers\KeuntunganHelpers;
 use App\Helpers\PengaruhEventHelpers;
 use App\Helpers\KenaikanKeuntunganHelpers;
+use App\Helpers\ProdukHelpers;
+use App\Helpers\WaktuHelpers;
 
 class PrediksiController extends Controller
 {
@@ -47,6 +49,22 @@ class PrediksiController extends Controller
         $kenaikanKeuntunganDuaTB = KenaikanKeuntunganHelpers::getKenaikanKeuntunganDuaTB('kelas');
         $kenaikanKeuntunganTigaTB = KenaikanKeuntunganHelpers::getKenaikanKeuntunganTigaTB('kelas');
 
+        $produkSatuB = ProdukHelpers::getProdukSatu('kelas');
+        $produkDuaB = ProdukHelpers::getProdukDua('kelas');
+        $produkTigaB = ProdukHelpers::getProdukTiga('kelas');
+
+        $produkSatuTB = ProdukHelpers::getProdukSatuTB('kelas');
+        $produkDuaTB = ProdukHelpers::getProdukDuaTB('kelas');
+        $produkTigaTB = ProdukHelpers::getProdukTigaTB('kelas');
+
+        $waktuSatuB = WaktuHelpers::getWaktuSatu('kelas');
+        $waktuDuaB = WaktuHelpers::getWaktuDua('kelas');
+        $waktuTigaB = WaktuHelpers::getWaktuTiga('kelas');
+
+        $waktuSatuTB = WaktuHelpers::getWaktuSatuTB('kelas');
+        $waktuDuaTB = WaktuHelpers::getWaktuDuaTB('kelas');
+        $waktuTigaTB = WaktuHelpers::getWaktuTigaTB('kelas');
+
         return view('admin.prediksi.index', compact(
             'probabilitasBerpengaruh',
             'probabilitasTidakBerpengaruh',
@@ -71,6 +89,19 @@ class PrediksiController extends Controller
             'kenaikanKeuntunganTigaB',
             'kenaikanKeuntunganSatuTB',
             'kenaikanKeuntunganDuaTB',
+            'kenaikanKeuntunganTigaTB',
+            'produkSatuB',
+            'produkDuaB',
+            'produkTigaB',
+            'produkSatuTB',
+            'produkDuaTB',
+            'produkTigaTB',
+            'waktuSatuB',
+            'waktuDuaB',
+            'waktuTigaB',
+            'waktuSatuTB',
+            'waktuDuaTB',
+            'waktuTigaTB',
         ));
     }
 }

@@ -134,7 +134,7 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-title mt-5">KenaikanKeuntungan</h4>
+                            <h4 class="card-title mt-5">Kenaikan Keuntungan</h4>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -149,7 +149,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center align-middle">Lebih dari Rp 1.000.000</td>
-                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganSatuB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganSatuB }}
+                                                    </td>
                                                     <td class="text-center align-middle">{{ $keuntunganSatuTB }}</td>
                                                 </tr>
                                                 <tr>
@@ -161,6 +162,74 @@
                                                     <td class="text-center align-middle">Kurang dari Rp 500.000</td>
                                                     <td class="text-center align-middle">{{ $keuntunganTigaB }}</td>
                                                     <td class="text-center align-middle">{{ $keuntunganTigaTB }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="card-title mt-5">Produk</h4>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Produk</th>
+                                                    <th class="text-center">B</th>
+                                                    <th class="text-center">TB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center align-middle">FAF</td>
+                                                    <td class="text-center align-middle">{{ $produkSatuB }}</td>
+                                                    <td class="text-center align-middle">{{ $produkSatuTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">KPD</td>
+                                                    <td class="text-center align-middle">{{ $produkDuaB }}</td>
+                                                    <td class="text-center align-middle">{{ $produkDuaTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">PSH</td>
+                                                    <td class="text-center align-middle">{{ $produkTigaB }}</td>
+                                                    <td class="text-center align-middle">{{ $produkTigaTB }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="card-title mt-5">Waktu</h4>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Waktu</th>
+                                                    <th class="text-center">B</th>
+                                                    <th class="text-center">TB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center align-middle">1</td>
+                                                    <td class="text-center align-middle">{{ $waktuSatuB }}</td>
+                                                    <td class="text-center align-middle">{{ $waktuSatuTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">2</td>
+                                                    <td class="text-center align-middle">{{ $waktuDuaB }}</td>
+                                                    <td class="text-center align-middle">{{ $waktuDuaTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">3</td>
+                                                    <td class="text-center align-middle">{{ $waktuTigaB }}</td>
+                                                    <td class="text-center align-middle">{{ $waktuTigaTB }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
