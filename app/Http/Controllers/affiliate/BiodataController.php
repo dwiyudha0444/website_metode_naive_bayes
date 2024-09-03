@@ -5,7 +5,7 @@ namespace App\Http\Controllers\affiliate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Biodata;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class BiodataController extends Controller
 {

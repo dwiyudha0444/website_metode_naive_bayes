@@ -104,6 +104,35 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <h4 class="card-title mt-5">Pengaruh Event</h4>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Pengaruh Event</th>
+                                                    <th class="text-center">B</th>
+                                                    <th class="text-center">TB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center align-middle">ya</td>
+                                                    <td class="text-center align-middle">{{ $pengaruhEventSatuB }}</td>
+                                                    <td class="text-center align-middle">{{ $pengaruhEventSatuTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">tidak</td>
+                                                    <td class="text-center align-middle">{{ $pengaruhEventDuaB }}</td>
+                                                    <td class="text-center align-middle">{{ $pengaruhEventDuaTB }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

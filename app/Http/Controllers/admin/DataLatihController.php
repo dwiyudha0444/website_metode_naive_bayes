@@ -6,21 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DataLatih;
 use App\Models\Biodata;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DataLatihController extends Controller
 {
     public function index()
     {
-        $datalatih = DataLatih::orderBy('id','DESC')->get();
-        return view('admin.data_latih.index',compact('datalatih'));
+        $datalatih = DataLatih::orderBy('id', 'DESC')->get();
+        return view('admin.data_latih.index', compact('datalatih'));
     }
 
     public function create()
     {
         $rel_biodata = Biodata::all();
         //arahkan ke form input data
-        return view('admin.data_latih.form',compact('rel_biodata'));
+        return view('admin.data_latih.form', compact('rel_biodata'));
     }
 
     public function store(Request $request)
@@ -35,21 +35,21 @@ class DataLatihController extends Controller
             'waktu' => 'required',
             'kelas' => 'required',
         ]);
-    
+
         // Insert data dari request form
         DB::table('datalatih')->insert([
             'id_biodata' => $request->id_biodata,
             'sosmed' => $request->sosmed,
             'keuntungan' => $request->keuntungan,
-            'pengaruh_event' => $request->pengaruh_event, 
+            'pengaruh_event' => $request->pengaruh_event,
             'kenaikan_keuntungan' => $request->kenaikan_keuntungan,
-            'produk' => $request->produk, 
-            'waktu' => $request->waktu, 
-            'kelas' => $request->kelas, 
+            'produk' => $request->produk,
+            'waktu' => $request->waktu,
+            'kelas' => $request->kelas,
             'updated_at' => now(),
             'created_at' => now(),
         ]);
-    
+
         return redirect()->route('datalatih')->with('success', 'Data Berhasil Disimpan');
     }
 
@@ -57,7 +57,7 @@ class DataLatihController extends Controller
     {
         $rel_biodata = Biodata::all();
         $datalatih = DataLatih::find($id);
-        return view('admin.data_latih.form_edit', compact('datalatih','rel_biodata'));
+        return view('admin.data_latih.form_edit', compact('datalatih', 'rel_biodata'));
     }
 
     public function update(Request $request, $id)
@@ -76,10 +76,10 @@ class DataLatihController extends Controller
             'id_biodata' => $request->id_biodata,
             'sosmed' => $request->sosmed,
             'keuntungan' => $request->keuntungan,
-            'pengaruh_event' => $request->pengaruh_event, 
-            'produk' => $request->produk, 
-            'waktu' => $request->waktu, 
-            'kelas' => $request->kelas, 
+            'pengaruh_event' => $request->pengaruh_event,
+            'produk' => $request->produk,
+            'waktu' => $request->waktu,
+            'kelas' => $request->kelas,
             'updated_at' => now(),
         ]);
 

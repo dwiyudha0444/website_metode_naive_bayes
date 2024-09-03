@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\NaiveBayesHelpers;
 use App\Helpers\SosmedHelpers;
 use App\Helpers\KeuntunganHelpers;
+use App\Helpers\PengaruhEventHelpers;
 
 class PrediksiController extends Controller
 {
@@ -14,7 +15,7 @@ class PrediksiController extends Controller
     {
         $probabilitasBerpengaruh = NaiveBayesHelpers::getBerpengaruh('kelas');
         $probabilitasTidakBerpengaruh = NaiveBayesHelpers::getTidakBerpengaruh('kelas');
-        
+
         $facebookData = NaiveBayesHelpers::getfacebook('kelas');
         $tiktokData = NaiveBayesHelpers::getTiktok('kelas');
         $instagramData = NaiveBayesHelpers::getinstagram('kelas');
@@ -31,6 +32,12 @@ class PrediksiController extends Controller
         $keuntunganDuaTB = KeuntunganHelpers::getKeuntunganDuaTB('kelas');
         $keuntunganTigaTB = KeuntunganHelpers::getKeuntunganTigaTB('kelas');
 
+        $pengaruhEventSatuB = PengaruhEventHelpers::getPengaruhEventSatu('kelas');
+        $pengaruhEventDuaB = PengaruhEventHelpers::getPengaruhEventDua('kelas');
+
+        $pengaruhEventSatuTB = PengaruhEventHelpers::getPengaruhEventSatuTB('kelas');
+        $pengaruhEventDuaTB = PengaruhEventHelpers::getPengaruhEventDuaTB('kelas');
+
         return view('admin.prediksi.index', compact(
             'probabilitasBerpengaruh',
             'probabilitasTidakBerpengaruh',
@@ -46,6 +53,10 @@ class PrediksiController extends Controller
             'keuntunganSatuTB',
             'keuntunganDuaTB',
             'keuntunganTigaTB',
+            'pengaruhEventSatuB',
+            'pengaruhEventDuaB',
+            'pengaruhEventSatuTB',
+            'pengaruhEventDuaTB',
         ));
     }
 }
