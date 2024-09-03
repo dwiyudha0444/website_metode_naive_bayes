@@ -88,11 +88,11 @@
                                     <div class="col-sm-9">
                                         <select name="kenaikan_keuntungan" class="form-select" id="kenaikan_keuntungan">
                                             <option value="">-- Pilih Kenaikan Keuntungan --</option>
-                                            <option value="Lebih dari Rp 1.000.000">
+                                            <option value="Lebih dari Rp 200.000">
                                                 Lebih dari Rp 200.000</option>
-                                            <option value="Lebih dari Rp 500.000">
+                                            <option value="Lebih dari Rp 50.000">
                                                 Lebih dari Rp 50.000</option>
-                                            <option value="Kurang dari Rp 500.000">
+                                            <option value="Kurang dari Rp 150.00">
                                                 Kurang dari Rp 150.000</option>
                                         </select>
                                     </div>

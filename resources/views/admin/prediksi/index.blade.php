@@ -133,6 +133,41 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <h4 class="card-title mt-5">KenaikanKeuntungan</h4>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Kenaikan Keuntungan</th>
+                                                    <th class="text-center">B</th>
+                                                    <th class="text-center">TB</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center align-middle">Lebih dari Rp 1.000.000</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganSatuB }}</td>
+                                                    <td class="text-center align-middle">{{ $keuntunganSatuTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">Lebih dari Rp 500.000</td>
+                                                    <td class="text-center align-middle">{{ $keuntunganDuaB }}</td>
+                                                    <td class="text-center align-middle">{{ $keuntunganDuaTB }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center align-middle">Kurang dari Rp 500.000</td>
+                                                    <td class="text-center align-middle">{{ $keuntunganTigaB }}</td>
+                                                    <td class="text-center align-middle">{{ $keuntunganTigaTB }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

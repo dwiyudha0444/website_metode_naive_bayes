@@ -104,15 +104,15 @@
                                     <div class="col-sm-9">
                                         <select name="kenaikan_keuntungan" class="form-select" id="kenaikan_keuntungan">
                                             <option value="">-- Pilih Kenaikan Keuntungan --</option>
-                                            <option value="Lebih dari Rp 1.000.000"
+                                            <option value="Lebih dari Rp 200.000"
                                                 {{ old('kenaikan_keuntungan', $datalatih->kenaikan_keuntungan) == 'Lebih dari Rp 1.000.000' ? 'selected' : '' }}>
                                                 Lebih dari Rp 200.000
                                             </option>
-                                            <option value="Lebih dari Rp 500.000"
+                                            <option value="Lebih dari Rp 50.000"
                                                 {{ old('kenaikan_keuntungan', $datalatih->kenaikan_keuntungan) == 'Lebih dari Rp 500.000' ? 'selected' : '' }}>
                                                 Lebih dari Rp 50.000
                                             </option>
-                                            <option value="Kurang dari Rp 500.000"
+                                            <option value="Kurang dari Rp 150.000"
                                                 {{ old('kenaikan_keuntungan', $datalatih->kenaikan_keuntungan) == 'Kurang dari Rp 500.000' ? 'selected' : '' }}>
                                                 Kurang dari Rp 150.000
                                             </option>

@@ -51,7 +51,7 @@ class PengaruhEventHelpers
     {
 
         $Count = DB::table('datalatih')
-            ->where('kelas', 'B')
+            ->where('kelas', 'TB')
             ->count();
 
         $kelasCount = DB::table('datalatih')
@@ -71,7 +71,7 @@ class PengaruhEventHelpers
     {
 
         $Count = DB::table('datalatih')
-            ->where('kelas', 'B')
+            ->where('kelas', 'TB')
             ->count();
 
         $kelasCount = DB::table('datalatih')
