@@ -11,6 +11,7 @@ use App\Helpers\PengaruhEventHelpers;
 use App\Helpers\KenaikanKeuntunganHelpers;
 use App\Helpers\ProdukHelpers;
 use App\Helpers\WaktuHelpers;
+use Illuminate\Support\Facades\DB;
 
 class PrediksiController extends Controller
 {
@@ -103,5 +104,81 @@ class PrediksiController extends Controller
             'waktuDuaTB',
             'waktuTigaTB',
         ));
+    }
+
+    public function store()
+    {
+        // Mengambil id_prediksi terakhir dan menambahkan 1
+        $lastPrediksiId = DB::table('sosmed')->max('id_prediksi'); // Ganti 'nama_tabel_prediksi' dengan nama tabel yang sesuai
+        $newPrediksiId = $lastPrediksiId + 1;
+
+        $facebookData = NaiveBayesHelpers::getfacebook('kelas');
+        $tiktokData = NaiveBayesHelpers::getTiktok('kelas');
+        $instagramData = NaiveBayesHelpers::getinstagram('kelas');
+
+        $facebookDataTB = SosmedHelpers::getfacebook('kelas');
+        $tiktokDataTB = SosmedHelpers::getTiktok('kelas');
+        $instagramDataTB = SosmedHelpers::getinstagram('kelas');
+
+        $dataprediksi = [
+            'id_sosmed' => $newPrediksiId,
+        ];
+
+        $dataSosmed = [
+            [
+                'id_prediksi' => $newPrediksiId,
+                'nama' => 'Instagram',
+                'b' =>  $instagramData,
+                'tb' =>  $instagramDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_prediksi' => $newPrediksiId,
+                'nama' => 'Facebook',
+                'b' => $facebookData,
+                'tb' => $facebookDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_prediksi' => $newPrediksiId,
+                'nama' => 'TikTok',
+                'b' => $tiktokData,
+                'tb' => $tiktokDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ];
+
+        $dataKelas = [
+            [
+                'nama' => 'Instagram',
+                'b' =>  $instagramData,
+                'tb' =>  $instagramDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama' => 'Facebook',
+                'b' => $facebookData,
+                'tb' => $facebookDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nama' => 'TikTok',
+                'b' => $tiktokData,
+                'tb' => $tiktokDataTB,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ];
+
+        // Insert batch data ke tabel 'sosmed'
+        DB::table('sosmed')->insert($dataSosmed);
+        DB::table('hasil_prediksi')->insert($dataprediksi);
+
+        return redirect()->route('prediksi')->with('success', 'Data berhasil disimpan');
     }
 }

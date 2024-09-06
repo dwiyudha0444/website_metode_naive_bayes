@@ -54,6 +54,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
     //prediksi
     Route::get('/prediksi', [PrediksiController::class, 'index'])->name('prediksi');
+    Route::post('/prediksi', [PrediksiController::class, 'store'])->name('store_prediksi');
 
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');

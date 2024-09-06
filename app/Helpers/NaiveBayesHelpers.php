@@ -8,35 +8,46 @@ class NaiveBayesHelpers
 {
     public static function getBerpengaruh($column)
     {
-        // Hitung jumlah baris dengan kelas 'B'
-        $berpengaruhCount = DB::table('datalatih')
-            ->where('kelas', 'B')
-            ->count();
-
         // Hitung total jumlah baris di tabel
-        $totalCount = DB::table('datalatih')
-            ->count();
-
-        $probabilitas = $berpengaruhCount / $totalCount;
-
+        $totalCount = DB::table('datalatih')->count();
+    
+        // Cek apakah totalCount lebih dari 0 untuk menghindari pembagian dengan nol
+        if ($totalCount > 0) {
+            // Hitung jumlah baris dengan kelas 'B'
+            $berpengaruhCount = DB::table('datalatih')
+                ->where('kelas', 'B')
+                ->count();
+    
+            $probabilitas = $berpengaruhCount / $totalCount;
+        } else {
+            // Jika tidak ada data, set probabilitas ke 0
+            $probabilitas = 0;
+        }
+    
         return $probabilitas;
     }
-
+    
     public static function getTidakBerpengaruh($column)
     {
-        // Hitung jumlah baris dengan kelas 'B'
-        $tidakBerpengaruhCount = DB::table('datalatih')
-            ->where('kelas', 'TB')
-            ->count();
-
         // Hitung total jumlah baris di tabel
-        $totalCount = DB::table('datalatih')
-            ->count();
-
-        $probabilitas = $tidakBerpengaruhCount / $totalCount;
-
+        $totalCount = DB::table('datalatih')->count();
+    
+        // Cek apakah totalCount lebih dari 0 untuk menghindari pembagian dengan nol
+        if ($totalCount > 0) {
+            // Hitung jumlah baris dengan kelas 'TB'
+            $tidakBerpengaruhCount = DB::table('datalatih')
+                ->where('kelas', 'TB')
+                ->count();
+    
+            $probabilitas = $tidakBerpengaruhCount / $totalCount;
+        } else {
+            // Jika tidak ada data, set probabilitas ke 0
+            $probabilitas = 0;
+        }
+    
         return $probabilitas;
     }
+    
 
     //Soaial Media Kelas Berpengaruh
     public static function getTiktok($column)

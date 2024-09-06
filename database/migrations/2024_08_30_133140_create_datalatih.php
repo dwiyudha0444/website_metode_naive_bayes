@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_biodata')->unsigned()->nullable();
             $table->string('sosmed'); 
             $table->string('keuntungan');
-            $table->string('pengaruh event');
+            $table->string('pengaruh_event');
             $table->string('kenaikan_keuntungan');
             $table->string('produk');
             $table->integer('waktu');
