@@ -29,7 +29,7 @@
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
+                        <a class="nav-link" href="{{ url('datalatihAff') }}">Data Latih</a>
                     </li>
                 </ul>
             </div>

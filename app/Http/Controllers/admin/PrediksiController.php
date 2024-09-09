@@ -163,6 +163,14 @@ class PrediksiController extends Controller
 
         $dataprediksi = [
             'id_sosmed' => $newPrediksiId,
+            'id_keuntungan' => $newPrediksiId,
+            'id_pengaruh_event' => $newPrediksiId,
+            'id_kenaikan_keuntungan' => $newPrediksiId,
+            'id_produk' => $newPrediksiId,
+            'id_waktu' => $newPrediksiId,
+            'id_kelas' => $newPrediksiId,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
 
         $dataKelas = [

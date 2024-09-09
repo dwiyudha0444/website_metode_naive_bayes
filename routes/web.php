@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\PrediksiController;
 //affiliate
 use App\Http\Controllers\affiliate\BiodataController;
 use App\Http\Controllers\affiliate\DashboardAffController;
+use App\Http\Controllers\affiliate\DataLatihAffController;
 
 
 
@@ -74,3 +75,11 @@ Route::get('/biodata_edit/{id}', [BiodataController::class, 'edit'])->name('biod
 Route::put('/biodata_update/{id}', [BiodataController::class, 'update'])->name('biodata_update');
 
 Route::delete('/biodata_destroy/{id}', [BiodataController::class, 'destroy'])->name('biodata_destroy');
+
+Route::get('/datalatihAff', [DataLatihAffController::class, 'index'])->name('datalatih');
+
+    Route::get('/form_data_latih_aff', [DataLatihAffController::class, 'create'])->name('create_data_latih_aff');
+    Route::post('/form_data_latih_aff', [DataLatihAffController::class, 'store'])->name('store_data_latih_aff');
+    Route::get('/form_data_latih_edit_aff/{id}', [DataLatihAffController::class, 'edit'])->name('edit_data_latih_aff');
+    Route::put('/data_latih/update_aff/{id}', [DataLatihAffController::class, 'update'])->name('update_data_latih_aff');
+    Route::delete('/data_latih_destroy_aff/{id}', [DataLatihAffController::class, 'destroy'])->name('destroy_data_latih_aff');
