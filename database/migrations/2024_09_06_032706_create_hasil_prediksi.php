@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('id_kenaikan_kuntungan')->unsigned()->nullable();
             $table->bigInteger('id_produk')->unsigned()->nullable();
             $table->bigInteger('id_waktu')->unsigned()->nullable();
+            $table->bigInteger('id_kelas')->unsigned()->nullable();
             $table->bigInteger('id_hasil')->unsigned()->nullable();
             $table->timestamps();
         });

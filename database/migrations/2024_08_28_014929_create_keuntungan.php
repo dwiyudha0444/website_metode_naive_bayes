@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('keuntungan', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_biodata')->unsigned()->nullable();
-            $table->string('sosmed');
-            $table->string('keuntungan');
-            $table->string('pengaruh event');
-            $table->string('produk');
-            $table->date('waktu');
+            $table->bigInteger('id_prediksi')->unsigned()->nullable();
+            $table->string('nama');
+            $table->decimal('b', 16, 2);
+            $table->decimal('tb', 16, 2); 
             $table->timestamps();
         });
     }

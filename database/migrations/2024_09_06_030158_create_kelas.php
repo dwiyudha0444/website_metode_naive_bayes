@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_prediksi')->unsigned()->nullable();
             $table->string('nama');
-            $table->decimal('b', 16, 2);
-            $table->decimal('tb', 16, 2);  
+            $table->decimal('nilai', 16, 2);
             $table->timestamps();
         });
     }
