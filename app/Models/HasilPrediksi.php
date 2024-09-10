@@ -20,8 +20,14 @@ class HasilPrediksi extends Model
         'id_hasil',
     ];
 
-    // public function biodata()
+    // Definisikan relasi satu ke banyak dengan Sosmed
+    public function sosmeds()
+    {
+        return $this->hasMany(Sosmed::class, 'id_prediksi', 'id_sosmed');
+    }
+
+    // public function sosmed()
     // {
-    //     return $this->belongsTo(Biodata::class,'id_biodata');
+    //     return $this->belongsTo(Sosmed::class,'id_sosemd');
     // }
 }

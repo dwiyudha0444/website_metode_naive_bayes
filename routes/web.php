@@ -11,13 +11,13 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\DataLatihController;
 use App\Http\Controllers\admin\PrediksiController;
+use App\Http\Controllers\admin\HasilPrediksiController;
 
 //affiliate
 use App\Http\Controllers\affiliate\BiodataController;
 use App\Http\Controllers\affiliate\DashboardAffController;
 use App\Http\Controllers\affiliate\DataLatihAffController;
-
-
+use App\Models\HasilPrediksi;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +57,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/prediksi', [PrediksiController::class, 'index'])->name('prediksi');
     Route::post('/prediksi', [PrediksiController::class, 'store'])->name('store_prediksi');
 
+    Route::get('/riwayat_prediksi', [HasilPrediksiController::class, 'index'])->name('riwayat_prediksi');
+
+    Route::delete('/riwayat_prediksi_destroy/{id}', [HasilPrediksiController::class, 'destroy'])->name('destroy_riwayat_prediksi');
+    
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::delete('/destroy_user/{id}', [UserController::class, 'destroy'])->name('destroy_user');

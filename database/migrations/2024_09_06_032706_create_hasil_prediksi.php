@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('id_produk')->unsigned()->nullable();
             $table->bigInteger('id_waktu')->unsigned()->nullable();
             $table->bigInteger('id_kelas')->unsigned()->nullable();
-            $table->bigInteger('id_hasil')->unsigned()->nullable();
+            $table->decimal('nilai', 16, 2);
             $table->timestamps();
         });
     }
