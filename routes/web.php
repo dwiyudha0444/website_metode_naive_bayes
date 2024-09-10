@@ -60,7 +60,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/riwayat_prediksi', [HasilPrediksiController::class, 'index'])->name('riwayat_prediksi');
 
     Route::delete('/riwayat_prediksi_destroy/{id}', [HasilPrediksiController::class, 'destroy'])->name('destroy_riwayat_prediksi');
-    
+    Route::get('/riwayat_prediksi_detail/{id}', [HasilPrediksiController::class, 'show'])->name('riwayat_prediksi_detail');
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::delete('/destroy_user/{id}', [UserController::class, 'destroy'])->name('destroy_user');

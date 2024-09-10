@@ -58,8 +58,8 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
 
-                                                    {{-- <a class="btn btn-warning btn-sm"
-                                                        href="{{ url('form_data_latih_edit', $use->id) }}">Edit</a> --}}
+                                                    <a class="btn btn-warning btn-sm"
+                                                        href="{{ url('riwayat_prediksi_detail', $use->id) }}">Detail</a>
                                                 </form>
                                             </td>
                                         </tr>

@@ -15,8 +15,14 @@ class HasilPrediksiController extends Controller
         // Mengambil data hasil_prediksi beserta relasi sosmed
         $hasil_prediksi = HasilPrediksi::orderBy('id', 'DESC')->get();
         
-    
         return view('admin.prediksi.riwayat.index', compact('hasil_prediksi'));
+    }
+
+    public function show($id)
+    {
+        $hasil_prediksi = HasilPrediksi::with('sosmeds')->findOrFail($id);
+        $relasi_sosmed = Sosmed::all();
+        return view('admin.prediksi.riwayat.detail',compact('hasil_prediksi','relasi_sosmed'));
     }
 
     public function destroy($id)

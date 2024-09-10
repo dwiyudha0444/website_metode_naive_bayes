@@ -59,6 +59,7 @@ class DataLatihController extends Controller
         $datalatih = DataLatih::find($id);
         return view('admin.data_latih.form_edit', compact('datalatih', 'rel_biodata'));
     }
+    
 
     public function update(Request $request, $id)
     {
