@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HasilPrediksi extends Model
+class HitungPrediksi extends Model
 {
-    protected $table = 'hasil_prediksi';
+    protected $table = 'hitung_prediksi';
     
     protected $fillable = [
         'id_sosmed',
@@ -25,9 +25,4 @@ class HasilPrediksi extends Model
     {
         return $this->hasMany(Sosmed::class, 'id_prediksi', 'id_sosmed');
     }
-
-    // public function sosmed()
-    // {
-    //     return $this->belongsTo(Sosmed::class,'id_sosemd');
-    // }
 }

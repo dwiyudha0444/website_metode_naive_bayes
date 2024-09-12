@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Keuntungan extends Model
+class PengaruhEvent extends Model
 {
-    protected $table = 'keuntungan';
+    protected $table = 'pengaruh_event';
     
     protected $fillable = [
         'id_prediksi',
@@ -19,6 +19,6 @@ class Keuntungan extends Model
     // Definisikan relasi kebalikannya
     public function hasilPrediksi()
     {
-        return $this->belongsTo(HasilPrediksi::class, 'id_prediksi', 'id_keuntungan');
+        return $this->belongsTo(HasilPrediksi::class, 'id_prediksi', 'id_pengaruh_event');
     }
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hasil_prediksi', function (Blueprint $table) {
+        Schema::create('hitung_prediksi', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_sosmed')->unsigned()->nullable();
             $table->bigInteger('id_keuntungan')->unsigned()->nullable();
@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('id_produk')->unsigned()->nullable();
             $table->bigInteger('id_waktu')->unsigned()->nullable();
             $table->bigInteger('id_kelas')->unsigned()->nullable();
+            $table->varchar('bulan')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hasil_prediksi');
+        Schema::dropIfExists('hitung_prediksi');
     }
 };

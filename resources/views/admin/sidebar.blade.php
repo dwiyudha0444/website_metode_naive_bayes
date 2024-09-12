@@ -32,7 +32,10 @@
                         <a class="nav-link" href="{{ url('datalatih') }}">Data Latih</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('prediksi') }}">Prediksi</a>
+                        <a class="nav-link" href="{{ url('prediksi') }}">Data Prediksi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('hitung_prediksi') }}">Hidtung Prediksi</a>
                     </li>
                 </ul>
             </div>

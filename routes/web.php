@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\DataLatihController;
 use App\Http\Controllers\admin\PrediksiController;
 use App\Http\Controllers\admin\HasilPrediksiController;
+use App\Http\Controllers\admin\HitungPrediksiController;
 
 //affiliate
 use App\Http\Controllers\affiliate\BiodataController;
@@ -61,6 +62,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
     Route::delete('/riwayat_prediksi_destroy/{id}', [HasilPrediksiController::class, 'destroy'])->name('destroy_riwayat_prediksi');
     Route::get('/riwayat_prediksi_detail/{id}', [HasilPrediksiController::class, 'show'])->name('riwayat_prediksi_detail');
+    
+    Route::get('/hitung_prediksi', [HitungPrediksiController::class, 'index'])->name('hitung_prediksi');
+    Route::post('/hitung_prediksi', [HitungPrediksiController::class, 'showForm'])->name('form.show');
+
+    Route::get('/hasil_hitung_prediksi', [HitungPrediksiController::class, 'create'])->name('create_hasil_hitung_prediksi');
+    Route::post('/hasil_hitung_prediksi', [HitungPrediksiController::class, 'store'])->name('store_hasil_hitung_prediksi');
+    
     //user
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::delete('/destroy_user/{id}', [UserController::class, 'destroy'])->name('destroy_user');
