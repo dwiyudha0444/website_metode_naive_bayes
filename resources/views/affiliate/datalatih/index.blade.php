@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Data Latih</h4>
-                            <a href="{{ route('store_data_latih') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            <a href="{{ route('store_data_latih_aff') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
                                     <path

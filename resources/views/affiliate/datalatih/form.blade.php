@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Tambah Data Latih</h4>
                             <p class="card-description"> </p>
-                            <form class="forms-sample" method="POST" action="{{ route('store_data_latih') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('store_data_latih_aff') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 

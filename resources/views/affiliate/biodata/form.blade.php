@@ -23,6 +23,14 @@
                                 @csrf
 
                                 <div class="form-group row">
+                                    <div class="col-sm-9">
+                                        <input type="hidden" name="id_user" value="{{ Auth::user()->id }}"
+                                            class="form-control" id="exampleInputEmail2">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="nama" class="form-control" id="exampleInputEmail2"
@@ -37,7 +45,7 @@
                                             placeholder="Umur">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Waktu
                                         Bergabung</label>

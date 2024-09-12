@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DataLatih;
 use App\Models\Biodata;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DataLatihAffController extends Controller
 {
@@ -18,13 +19,27 @@ class DataLatihAffController extends Controller
 
     public function create()
     {
+        // Cek apakah sudah ada data yang dimasukkan oleh pengguna di bulan berjalan
+        $existingData = DB::table('datalatih')
+            ->where('id_biodata', Auth::user()->id) // Sesuaikan dengan ID biodata pengguna yang login
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->exists();
+    
+        if ($existingData) {
+            // Jika sudah ada data, kembalikan dengan pesan bahwa data sudah terisi
+            return redirect()->route('datalatih')->with('error', 'Data sudah terisi, tunggu bulan selanjutnya untuk menambah data.');
+        }
+    
+        // Jika belum ada data, arahkan ke form input data
         $rel_biodata = Biodata::all();
-        //arahkan ke form input data
         return view('affiliate.datalatih.form', compact('rel_biodata'));
     }
+    
 
     public function store(Request $request)
     {
+        // Validasi input form
         $request->validate([
             'id_biodata' => 'required',
             'sosmed' => 'required',
@@ -36,7 +51,19 @@ class DataLatihAffController extends Controller
             'kelas' => 'required',
         ]);
 
-        // Insert data dari request form
+        // Cek apakah sudah ada data yang dimasukkan oleh pengguna di bulan berjalan
+        $existingData = DB::table('datalatih')
+            ->where('id_biodata', $request->id_biodata)
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->exists();
+
+        if ($existingData) {
+            // Jika data sudah ada, tampilkan pesan error
+            return redirect()->back()->with('error', 'Anda hanya bisa menambah data satu kali per bulan.');
+        }
+
+        // Insert data baru jika belum ada di bulan berjalan
         DB::table('datalatih')->insert([
             'id_biodata' => $request->id_biodata,
             'sosmed' => $request->sosmed,
@@ -52,6 +79,7 @@ class DataLatihAffController extends Controller
 
         return redirect()->route('datalatih')->with('success', 'Data Berhasil Disimpan');
     }
+
 
     public function edit($id)
     {

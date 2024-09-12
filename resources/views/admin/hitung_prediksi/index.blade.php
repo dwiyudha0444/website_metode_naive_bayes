@@ -56,7 +56,7 @@
                                     <label class="col-sm-3 col-form-label">Keuntungan</label>
                                     <div class="col-sm-9">
                                         <select class="form-select" name="id_keuntungan" id="sosmedSelect">
-                                            <option value='1' selected>-- Pilih Sosial Media --</option>
+                                            <option value='1' selected>-- Pilih Keuntungan --</option>
                                             @foreach ($relasi_keuntungan as $ob)
                                                 <option value="{{ $ob->id }}"
                                                     {{ old('id_keuntungan') == $ob->id ? 'selected' : '' }}>

@@ -10,6 +10,7 @@ class Biodata extends Model
     protected $table = 'biodata';
     
     protected $fillable = [
+        'id_user',
         'nama',
         'umur',
         'waktu_bergabung',
