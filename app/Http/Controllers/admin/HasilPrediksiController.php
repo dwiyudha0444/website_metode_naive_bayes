@@ -5,7 +5,14 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HasilPrediksi;
+use App\Models\KenaikanKeuntungan;
+use App\Models\Keuntungan;
+use App\Models\PengaruhEvent;
 use App\Models\Sosmed;
+use App\Models\Produk;
+use App\Models\Waktu;
+use App\Models\Kelas;
+use Illuminate\Support\Facades\DB;
 
 
 class HasilPrediksiController extends Controller
@@ -14,15 +21,41 @@ class HasilPrediksiController extends Controller
     {
         // Mengambil data hasil_prediksi beserta relasi sosmed
         $hasil_prediksi = HasilPrediksi::orderBy('id', 'DESC')->get();
-        
+
         return view('admin.prediksi.riwayat.index', compact('hasil_prediksi'));
     }
 
     public function show($id)
     {
-        $hasil_prediksi = HasilPrediksi::with('sosmeds')->findOrFail($id);
+        $hasil_prediksi = HasilPrediksi::with(
+            'sosmeds',
+            'keuntungan',
+            'pengaruh_event',
+            'kenaikan_keuntungan',
+            'produk',
+            'waktu',
+            'kelas',
+        )->findOrFail($id);
+        
+
         $relasi_sosmed = Sosmed::all();
-        return view('admin.prediksi.riwayat.detail',compact('hasil_prediksi','relasi_sosmed'));
+        $relasi_keuntungan = Keuntungan::all();
+        $relasi_pengaruh_event = PengaruhEvent::all();
+        $relasi_kenaikan_keuntungan = KenaikanKeuntungan::all();
+        $relasi_produk = Produk::all();
+        $relasi_waktu = Waktu::all();
+        $relasi_kelas = Kelas::all();
+        return view('admin.prediksi.riwayat.detail', compact(
+            'hasil_prediksi',
+            'relasi_sosmed',
+            'relasi_keuntungan',
+            'relasi_pengaruh_event',
+            'relasi_produk',
+            'relasi_waktu',
+            'relasi_kelas',
+        ));
+
+        
     }
 
     public function destroy($id)
@@ -31,5 +64,25 @@ class HasilPrediksiController extends Controller
         $datalatih->delete();
         return redirect('riwayat_prediksi')->with('success', 'Berhasil Menghapus User');
     }
-    
+
+    public function addData(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'b' => 'required',
+            'tb' => 'required',
+        ]);
+
+        // Insert data dari request form
+        DB::table('hitung_prediksi')->insert([
+            'nama' => $request->nama,
+            'b' => $request->b,
+            'tb' => $request->tb,
+            'updated_at' => now(),
+            'created_at' => now(),
+        ]);
+
+        
+        return back()->with('success', 'Data Berhasil Disimpan');
+    }
 }

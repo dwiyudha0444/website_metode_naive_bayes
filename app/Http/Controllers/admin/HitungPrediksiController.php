@@ -8,6 +8,7 @@ use App\Models\HasilPrediksi;
 use App\Models\Sosmed;
 use App\Models\Keuntungan;
 use App\Models\PengaruhEvent;
+use App\Models\HitungPrediksi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +16,14 @@ class HitungPrediksiController extends Controller
 {
     public function index()
     {
-        // Mengambil data hasil_prediksi beserta relasi sosmed
+
+        // Ambil data tambahan
         $hasil_prediksi = HasilPrediksi::orderBy('id', 'DESC')->get();
         $relasi_sosmed = Sosmed::all();
         $relasi_keuntungan = Keuntungan::all();
         $relasi_pengaruh_event = PengaruhEvent::all();
+
+        // Kirim variabel ke view
         return view('admin.hitung_prediksi.index', compact('hasil_prediksi', 'relasi_sosmed', 'relasi_keuntungan', 'relasi_pengaruh_event'));
     }
 
@@ -47,7 +51,7 @@ class HitungPrediksiController extends Controller
     {
         $relasi_sosmed = Sosmed::all();
         $relasi_keuntungan = Keuntungan::all();
-        return view('admin.hitung_prediksi.index', compact('relasi_sosmed','relasi_keuntungan'));
+        return view('admin.hitung_prediksi.index', compact('relasi_sosmed', 'relasi_keuntungan'));
     }
 
     public function store(Request $request)
@@ -62,7 +66,7 @@ class HitungPrediksiController extends Controller
 
         // Simpan bulan yang dipilih untuk dikirim kembali ke view
         $selectedBulan = $bulan;
-        
+
         $request->validate([
             'bulan' => 'required',
             'id_sosmed' => 'required',
@@ -82,6 +86,29 @@ class HitungPrediksiController extends Controller
 
             'relasi_sosmed',
             'relasi_keuntungan',
-            'selectedBulan'));
+            'selectedBulan'
+        ));
+    }
+
+    public function show($id)
+    {
+        // Mengambil data prediksi terbaru berdasarkan 'created_at'
+        $hasil_prediksi = HitungPrediksi::with('sosmeds')
+            ->where('id', $id)
+            ->latest('created_at')
+            ->firstOrFail();  // Mengambil satu data terbaru
+
+        // Mengambil semua data dari tabel Sosmed
+        $relasi_sosmed = Sosmed::all();
+
+        return view('admin.hitung_prediksi.hasil', compact('hasil_prediksi', 'relasi_sosmed'));
+    }
+
+
+    public function destroyAll()
+    {
+        HitungPrediksi::truncate();  // Menghapus semua data dan reset auto-increment
+
+        return redirect('hasil_hitung_prediksi')->with('success', 'Berhasil Menghapus Semua Data');
     }
 }

@@ -16,7 +16,6 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-
                             <h4 class="card-title mt-5">SOSIAL MEDIA</h4>
                             <div class="container">
                                 <div class="row">
@@ -32,8 +31,15 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center align-middle">Instagram</td>
-                                                    <td class="text-center align-middle"></td>
-                                                    <td class="text-center align-middle"></td>
+                                                    <td class="text-center align-middle">{{ $hasil_prediksi->id_sosmed }}
+                                                    </td>
+                                                    <td class="text-center align-middle">
+                                                        @foreach ($hasil_prediksi->sosmeds as $sosmed)
+                                                            <li>{{ $sosmed->b }}</li>
+                                                            <!-- Akses atribut 'b' dari setiap item dalam koleksi -->
+                                                        @endforeach
+                                                    </td>
+
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center align-middle">Facebook</td>
@@ -49,9 +55,9 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>
 
-                            <form class="mt-5" action="{{ route('store_prediksi') }}" method="POST">
+                            <form class="mt-5" action="" method="POST">
                                 @csrf
 
                                 <button type="submit" class="btn btn-primary">Simpan</button>

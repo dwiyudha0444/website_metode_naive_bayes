@@ -17,17 +17,41 @@ class HasilPrediksi extends Model
         'id_produk', 
         'id_waktu', 
         'id_kelas', 
-        'id_hasil',
     ];
 
     // Definisikan relasi satu ke banyak dengan Sosmed
-    public function sosmed()
+    public function sosmeds()
     {
         return $this->hasMany(Sosmed::class, 'id_prediksi', 'id_sosmed');
     }
 
-    // public function sosmed()
-    // {
-    //     return $this->belongsTo(Sosmed::class,'id_sosemd');
-    // }
+    public function keuntungan()
+    {
+        return $this->hasMany(Keuntungan::class, 'id_prediksi', 'id_keuntungan');
+    }
+
+    public function pengaruh_event()
+    {
+        return $this->hasMany(PengaruhEvent::class, 'id_prediksi', 'id_pengaruh_event');
+    }
+
+    public function kenaikan_keuntungan()
+    {
+        return $this->hasMany(KenaikanKeuntungan::class, 'id_prediksi', 'id_kenaikan_keuntungan');
+    }
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'id_prediksi', 'id_produk');
+    }
+
+    public function waktu()
+    {
+        return $this->hasMany(Waktu::class, 'id_prediksi', 'id_waktu');
+    }
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'id_prediksi', 'id_kelas');
+    }
 }

@@ -12,6 +12,8 @@
                 </nav>
             </div>
 
+<a href="{{ url('prediksi') }}" class="btn btn-primary">Kembali</a>
+
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
