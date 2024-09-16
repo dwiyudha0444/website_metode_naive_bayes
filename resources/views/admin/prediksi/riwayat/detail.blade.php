@@ -165,7 +165,7 @@
                                                     <input type="hidden" name="nama" value="{{ $data->nama }}">
                                                     <input type="hidden" name="b" value="{{ $data->b }}">
                                                     <input type="hidden" name="tb" value="{{ $data->tb }}">
-                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -207,7 +207,7 @@
                 </div>
             </div>
 
-            <h4 class="card-title mt-4">Added Products</h4>
+            <h4 class="card-title mt-4">Selected Product</h4>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -217,44 +217,59 @@
                         <th class="text-center">Tidak Berpengaruh</th>
                     </tr>
                 </thead>
-                <tbody id="added-products-table-body">
-                    <!-- Data yang ditambahkan akan muncul di sini -->
+                <tbody id="selected-product-table-body">
+                    <!-- Data yang dipilih akan muncul di sini -->
                 </tbody>
             </table>
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var addedProductsTableBody = document.getElementById('added-products-table-body');
+                var selectedProductTableBody = document.getElementById('selected-product-table-body');
 
-                document.querySelectorAll('.add-form').forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        event.preventDefault(); // Prevent the default form submission
+                // Pilih semua tombol "Add"
+                document.querySelectorAll('.add-button').forEach(function(button) {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent default form submission
 
-                        // Ambil data dari form
+                        // Reset button styles (set all buttons to primary)
+                        document.querySelectorAll('.add-button').forEach(function(btn) {
+                            btn.classList.remove('btn-danger');
+                            btn.classList.add('btn-primary');
+                            btn.disabled = false; // Enable all buttons
+                        });
+
+                        // Change clicked button to red (selected state)
+                        button.classList.remove('btn-primary');
+                        button.classList.add('btn-danger');
+                        button.disabled = true; // Disable the selected button
+
+                        // Ambil data dari form yang diklik
+                        var form = button.closest('form');
                         var formData = new FormData(form);
                         var nama = formData.get('nama');
                         var b = formData.get('b');
                         var tb = formData.get('tb');
 
-                        // Buat baris baru
+                        // Kosongkan tabel produk yang dipilih sebelum menambahkan yang baru
+                        selectedProductTableBody.innerHTML = '';
+
+                        // Buat baris baru untuk produk yang dipilih
                         var newRow = document.createElement('tr');
                         newRow.innerHTML = `<td class="text-center align-middle">${Date.now()}</td>
                                     <td class="text-center align-middle">${nama}</td>
                                     <td class="text-center align-middle">${b}</td>
                                     <td class="text-center align-middle">${tb}</td>`;
 
-                        // Tambahkan baris baru ke tabel
-                        addedProductsTableBody.appendChild(newRow);
-
-                        // (Opsional) Kosongkan form setelah menambahkan
-                        form.reset();
+                        // Tambahkan baris baru ke tabel produk yang dipilih
+                        selectedProductTableBody.appendChild(newRow);
                     });
                 });
             });
         </script>
 
-        <script>
+
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Simpan posisi scroll di localStorage saat halaman dimuat
                 if (localStorage.getItem('scrollPosition')) {
@@ -280,7 +295,7 @@
             window.addEventListener('beforeunload', function() {
                 localStorage.setItem('scrollPosition', window.scrollY);
             });
-        </script>
+        </script> --}}
 
 
         <!-- content-wrapper ends -->
