@@ -50,21 +50,43 @@
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="sosmed-table-body">
                                     @foreach ($hasil_prediksi->sosmeds as $data)
                                         <tr>
                                             <td class="text-center align-middle">{{ $data->id }}</td>
                                             <td class="text-center align-middle">{{ $data->nama }}</td>
                                             <td class="text-center align-middle">{{ $data->b }}</td>
                                             <td class="text-center align-middle">{{ $data->tb }}</td>
-                                            <td class="text-center align-middle"><button type="submit"
-                                                    class="btn btn-primary">Add</button></td>
+                                            <td class="text-center align-middle">
+                                                <form class="add-form" data-target="selected-sosmed-table-body">
+                                                    @csrf
+                                                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                                                    <input type="hidden" name="b" value="{{ $data->b }}">
+                                                    <input type="hidden" name="tb" value="{{ $data->tb }}">
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
+
+                            <h4 class="card-title mt-4">Selected Sosial Media</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Berpengaruh</th>
+                                        <th class="text-center">Tidak Berpengaruh</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="selected-sosmed-table-body">
+                                    <!-- Data yang dipilih akan muncul di sini -->
+                                </tbody>
+                            </table>
+
+
 
                             <h4 class="card-title">Keuntungan</h4>
                             <table class="table table-bordered">
@@ -77,19 +99,43 @@
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="keuntungan-table-body">
                                     @foreach ($hasil_prediksi->keuntungan as $data)
                                         <tr>
                                             <td class="text-center align-middle">{{ $data->id }}</td>
                                             <td class="text-center align-middle">{{ $data->nama }}</td>
                                             <td class="text-center align-middle">{{ $data->b }}</td>
                                             <td class="text-center align-middle">{{ $data->tb }}</td>
-                                            <td class="text-center align-middle"><button type="submit"
-                                                    class="btn btn-primary">Add</button></td>
+                                            <td class="text-center align-middle">
+                                                <form class="add-form" data-target="selected-keuntungan-table-body">
+                                                    @csrf
+                                                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                                                    <input type="hidden" name="b" value="{{ $data->b }}">
+                                                    <input type="hidden" name="tb" value="{{ $data->tb }}">
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <h4 class="card-title mt-4">Selected Keuntungan</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Berpengaruh</th>
+                                        <th class="text-center">Tidak Berpengaruh</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="selected-keuntungan-table-body">
+                                    <!-- Data yang dipilih akan muncul di sini -->
+                                </tbody>
+                            </table>
+
+                            <!-- Tabel-tabel lainnya mengikuti pola yang sama -->
 
                             <h4 class="card-title">Pengaruh Event</h4>
                             <table class="table table-bordered">
@@ -102,21 +148,28 @@
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="pengaruh-event-table-body">
                                     @foreach ($hasil_prediksi->pengaruh_event as $data)
                                         <tr>
                                             <td class="text-center align-middle">{{ $data->id }}</td>
                                             <td class="text-center align-middle">{{ $data->nama }}</td>
                                             <td class="text-center align-middle">{{ $data->b }}</td>
                                             <td class="text-center align-middle">{{ $data->tb }}</td>
-                                            <td class="text-center align-middle"><button type="submit"
-                                                    class="btn btn-primary">Add</button></td>
+                                            <td class="text-center align-middle">
+                                                <form class="add-form" data-target="selected-pengaruh-event-table-body">
+                                                    @csrf
+                                                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                                                    <input type="hidden" name="b" value="{{ $data->b }}">
+                                                    <input type="hidden" name="tb" value="{{ $data->tb }}">
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
 
-                            <h4 class="card-title">Kenaikan Keuntungan</h4>
+                            <h4 class="card-title mt-4">Selected Pengaruh Event</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -124,22 +177,13 @@
                                         <th class="text-center">Nama</th>
                                         <th class="text-center">Berpengaruh</th>
                                         <th class="text-center">Tidak Berpengaruh</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($hasil_prediksi->kenaikan_keuntungan as $data)
-                                        <tr>
-                                            <td class="text-center align-middle">{{ $data->id }}</td>
-                                            <td class="text-center align-middle">{{ $data->nama }}</td>
-                                            <td class="text-center align-middle">{{ $data->b }}</td>
-                                            <td class="text-center align-middle">{{ $data->tb }}</td>
-                                            <td class="text-center align-middle"><button type="submit"
-                                                    class="btn btn-primary">Add</button></td>
-                                        </tr>
-                                    @endforeach
+                                <tbody id="selected-pengaruh-event-table-body">
+                                    <!-- Data yang dipilih akan muncul di sini -->
                                 </tbody>
                             </table>
+
 
                             <h4 class="card-title">Produk</h4>
                             <table class="table table-bordered">
@@ -160,7 +204,7 @@
                                             <td class="text-center align-middle">{{ $data->b }}</td>
                                             <td class="text-center align-middle">{{ $data->tb }}</td>
                                             <td class="text-center align-middle">
-                                                <form class="add-form">
+                                                <form class="add-form" data-target="selected-product-table-body">
                                                     @csrf
                                                     <input type="hidden" name="nama" value="{{ $data->nama }}">
                                                     <input type="hidden" name="b" value="{{ $data->b }}">
@@ -172,9 +216,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
-
-                            <h4 class="card-title">Waktu</h4>
+                            <h4 class="card-title mt-4">Selected Product</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -182,24 +224,36 @@
                                         <th class="text-center">Nama</th>
                                         <th class="text-center">Berpengaruh</th>
                                         <th class="text-center">Tidak Berpengaruh</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    @foreach ($hasil_prediksi->waktu as $data)
-                                        <tr>
-                                            <td class="text-center align-middle">{{ $data->id }}</td>
-                                            <td class="text-center align-middle">{{ $data->nama }}</td>
-                                            <td class="text-center align-middle">{{ $data->b }}</td>
-                                            <td class="text-center align-middle">{{ $data->tb }}</td>
-                                            <td class="text-center align-middle"><button type="submit"
-                                                    class="btn btn-primary">Add</button></td>
-                                        </tr>
-                                    @endforeach
-
-
+                                <tbody id="selected-product-table-body">
+                                    <!-- Data yang dipilih akan muncul di sini -->
                                 </tbody>
+                            </table>
+
+
+
+                            <!-- Tabel Gabungan -->
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Kategori</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Berpengaruh</th>
+                                        <th class="text-center">Tidak Berpengaruh</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="selected-data-table-body">
+                                    <!-- Data yang dipilih akan muncul di sini -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="3" class="text-center">Total</th>
+                                        <th id="total-berpengaruh" class="text-center"></th>
+                                        <th id="total-tidak-berpengaruh" class="text-center"></th>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                         </div>
@@ -207,95 +261,105 @@
                 </div>
             </div>
 
-            <h4 class="card-title mt-4">Selected Product</h4>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">Nama</th>
-                        <th class="text-center">Berpengaruh</th>
-                        <th class="text-center">Tidak Berpengaruh</th>
-                    </tr>
-                </thead>
-                <tbody id="selected-product-table-body">
-                    <!-- Data yang dipilih akan muncul di sini -->
-                </tbody>
-            </table>
+
+
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                var selectedProductTableBody = document.getElementById('selected-product-table-body');
+                // Fungsi untuk menyimpan data terpilih ke localStorage
+                function saveToLocalStorage(tableId, data) {
+                    localStorage.setItem(tableId, JSON.stringify([data]));
+                }
 
-                // Pilih semua tombol "Add"
-                document.querySelectorAll('.add-button').forEach(function(button) {
-                    button.addEventListener('click', function(event) {
-                        event.preventDefault(); // Prevent default form submission
+                // Fungsi untuk menampilkan data dari localStorage ke tabel gabungan
+                function displayStoredData() {
+                    const tableIdMap = {
+                        'selected-sosmed-table-body': 'Sosial Media',
+                        'selected-keuntungan-table-body': 'Keuntungan',
+                        'selected-pengaruh-event-table-body': 'Pengaruh Event',
+                        'selected-product-table-body': 'Produk'
+                    };
 
-                        // Reset button styles (set all buttons to primary)
-                        document.querySelectorAll('.add-button').forEach(function(btn) {
-                            btn.classList.remove('btn-danger');
-                            btn.classList.add('btn-primary');
-                            btn.disabled = false; // Enable all buttons
+                    let targetTableBody = document.getElementById('selected-data-table-body');
+                    let totalBerpengaruh = 1;
+                    let totalTidakBerpengaruh = 1;
+                    let hasData = false;
+
+                    targetTableBody.innerHTML = ''; // Kosongkan tabel sebelum menampilkan data
+
+                    Object.keys(tableIdMap).forEach(tableId => {
+                        let storedData = JSON.parse(localStorage.getItem(tableId)) || [];
+                        storedData.forEach(item => {
+                            let newRow = document.createElement('tr');
+                            newRow.innerHTML = `
+                    <td class="text-center align-middle">${item.id}</td>
+                    <td class="text-center align-middle">${tableIdMap[tableId]}</td>
+                    <td class="text-center align-middle">${item.nama}</td>
+                    <td class="text-center align-middle">${item.b}</td>
+                    <td class="text-center align-middle">${item.tb}</td>`;
+                            targetTableBody.appendChild(newRow);
+
+                            // Update total dengan perkalian
+                            if (parseFloat(item.b) && parseFloat(item.tb)) {
+                                totalBerpengaruh *= parseFloat(item.b);
+                                totalTidakBerpengaruh *= parseFloat(item.tb);
+                                hasData = true;
+                            }
                         });
-
-                        // Change clicked button to red (selected state)
-                        button.classList.remove('btn-primary');
-                        button.classList.add('btn-danger');
-                        button.disabled = true; // Disable the selected button
-
-                        // Ambil data dari form yang diklik
-                        var form = button.closest('form');
-                        var formData = new FormData(form);
-                        var nama = formData.get('nama');
-                        var b = formData.get('b');
-                        var tb = formData.get('tb');
-
-                        // Kosongkan tabel produk yang dipilih sebelum menambahkan yang baru
-                        selectedProductTableBody.innerHTML = '';
-
-                        // Buat baris baru untuk produk yang dipilih
-                        var newRow = document.createElement('tr');
-                        newRow.innerHTML = `<td class="text-center align-middle">${Date.now()}</td>
-                                    <td class="text-center align-middle">${nama}</td>
-                                    <td class="text-center align-middle">${b}</td>
-                                    <td class="text-center align-middle">${tb}</td>`;
-
-                        // Tambahkan baris baru ke tabel produk yang dipilih
-                        selectedProductTableBody.appendChild(newRow);
                     });
+
+                    // Update total display
+                    document.getElementById('total-berpengaruh').textContent = hasData ? totalBerpengaruh.toFixed(2) :
+                        '0.00';
+                    document.getElementById('total-tidak-berpengaruh').textContent = hasData ? totalTidakBerpengaruh
+                        .toFixed(2) : '0.00';
+                }
+
+                function handleAddButtonClick(event) {
+                    event.preventDefault(); // Mencegah submit form
+
+                    var form = event.target.closest('form');
+                    var targetTableBodyId = form.getAttribute('data-target');
+                    var targetTableBody = document.getElementById(targetTableBodyId);
+
+                    var tableBody = form.closest('tbody');
+                    tableBody.querySelectorAll('.add-button').forEach(function(btn) {
+                        btn.classList.remove('btn-danger');
+                        btn.classList.add('btn-primary');
+                        btn.disabled = false;
+                    });
+
+                    event.target.classList.remove('btn-primary');
+                    event.target.classList.add('btn-danger');
+                    event.target.disabled = true;
+
+                    var formData = new FormData(form);
+                    var nama = formData.get('nama');
+                    var b = formData.get('b');
+                    var tb = formData.get('tb');
+
+                    var data = {
+                        id: Date.now(),
+                        nama: nama,
+                        b: b,
+                        tb: tb
+                    };
+
+                    saveToLocalStorage(targetTableBodyId, data);
+                    displayStoredData();
+                }
+
+                // Pasang event listener ke semua tombol "Add"
+                document.querySelectorAll('.add-button').forEach(function(button) {
+                    button.addEventListener('click', handleAddButtonClick);
                 });
+
+                // Tampilkan data yang tersimpan saat halaman dimuat
+                displayStoredData();
             });
         </script>
 
-
-        {{-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Simpan posisi scroll di localStorage saat halaman dimuat
-                if (localStorage.getItem('scrollPosition')) {
-                    window.scrollTo(0, localStorage.getItem('scrollPosition'));
-                    localStorage.removeItem('scrollPosition'); // Hapus setelah penggunaan
-                }
-            });
-
-            window.addEventListener('beforeunload', function() {
-                // Simpan posisi scroll saat halaman di-unload
-                localStorage.setItem('scrollPosition', window.scrollY);
-            });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                if (localStorage.getItem('scrollPosition')) {
-                    window.scrollTo(0, localStorage.getItem('scrollPosition'));
-                }
-            });
-
-            // Atur scroll ke posisi sebelumnya saat halaman dimuat
-            window.addEventListener('beforeunload', function() {
-                localStorage.setItem('scrollPosition', window.scrollY);
-            });
-        </script> --}}
 
 
         <!-- content-wrapper ends -->
