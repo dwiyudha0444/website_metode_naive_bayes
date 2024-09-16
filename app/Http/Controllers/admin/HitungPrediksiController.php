@@ -9,6 +9,7 @@ use App\Models\Sosmed;
 use App\Models\Keuntungan;
 use App\Models\PengaruhEvent;
 use App\Models\HitungPrediksi;
+use App\Models\Produk;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -103,6 +104,21 @@ class HitungPrediksiController extends Controller
 
         return view('admin.hitung_prediksi.hasil', compact('hasil_prediksi', 'relasi_sosmed'));
     }
+
+    public function saveSelectedData(Request $request)
+    {
+        $data = json_decode($request->input('data'), true);
+
+        foreach ($data as $item) {
+            HitungPrediksi::updateOrCreate(
+                ['id' => $item['id']],
+                ['nama' => $item['nama'], 'b' => $item['b'], 'tb' => $item['tb']]
+            );
+        }
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+    }
+
 
 
     public function destroyAll()

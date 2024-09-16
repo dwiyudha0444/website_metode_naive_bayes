@@ -71,6 +71,9 @@ Route::post('/hasil_hitung_prediksi', [HitungPrediksiController::class, 'store']
 Route::delete('/hasil_hitung_prediksi/delete-all', [HitungPrediksiController::class, 'destroyAll'])->name('hasil_hitung_prediksi.destroyAll');
 
 Route::get('/hasil/{id}', [HitungPrediksiController::class, 'show'])->name('hasil');
+Route::post('/save-selected-data', [HitungPrediksiController::class, 'saveSelectedData']);
+Route::post('/save-to-database', [HitungPrediksiController::class, 'saveSelectedData']);
+
 
 // routes/web.php
 Route::post('/add_data', [HasilPrediksiController::class, 'addData'])->name('add_data');

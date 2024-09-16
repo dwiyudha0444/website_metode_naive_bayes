@@ -255,6 +255,11 @@
                                     </tr>
                                 </tfoot>
                             </table>
+                            <form id="save-to-database-form" method="POST" action="/save-to-database">
+                                @csrf
+                                <input type="hidden" name="data" id="data-input">
+                                <button type="submit" class="btn btn-success">Simpan ke Database</button>
+                            </form>
 
                         </div>
                     </div>
@@ -264,6 +269,35 @@
 
 
         </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function sendDataToServer() {
+            const tableIds = [
+                'selected-sosmed-table-body',
+                'selected-keuntungan-table-body',
+                'selected-pengaruh-event-table-body',
+                'selected-product-table-body'
+            ];
+
+            let allData = [];
+
+            tableIds.forEach(tableId => {
+                let storedData = JSON.parse(localStorage.getItem(tableId)) || [];
+                allData = allData.concat(storedData);
+            });
+
+            document.getElementById('data-input').value = JSON.stringify(allData);
+
+            document.getElementById('save-to-database-form').submit();
+        }
+
+        // Pasang event listener untuk tombol "Simpan ke Database"
+        document.querySelector('.btn-success').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah form submit default
+            sendDataToServer();
+        });
+    });
+</script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
