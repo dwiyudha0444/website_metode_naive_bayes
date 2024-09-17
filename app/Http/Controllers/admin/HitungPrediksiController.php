@@ -116,10 +116,29 @@ class HitungPrediksiController extends Controller
             );
         }
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+        return redirect('perhitungan_prediksi')->with('success', 'Hasil Prediksi');
     }
 
+    public function indexDetail()
+    {
+        // Mengambil semua nilai dari kolom b
+        $dataB = HitungPrediksi::pluck('b');
 
+        // Mengalikan semua nilai dari kolom b
+        $totalPerkalianB = $dataB->reduce(function ($carry, $item) {
+            return $carry * $item;
+        }, 1);
+
+        $dataTB = HitungPrediksi::pluck('tb');
+
+        // Mengalikan semua nilai dari kolom tb
+        $totalPerkalianTB = $dataTB->reduce(function ($carry, $item) {
+            return $carry * $item;
+        }, 1);
+
+        $data = HitungPrediksi::orderBy('id', 'DESC')->get();
+        return view('admin.prediksi.riwayat.hasil', compact('data','totalPerkalianB','totalPerkalianTB'));
+    }
 
     public function destroyAll()
     {
