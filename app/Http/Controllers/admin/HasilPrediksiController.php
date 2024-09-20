@@ -27,6 +27,9 @@ class HasilPrediksiController extends Controller
 
     public function show($id)
     {
+        
+        session(['previous_url' => url()->previous()]);
+
         $hasil_prediksi = HasilPrediksi::with(
             'sosmeds',
             'keuntungan',
@@ -36,7 +39,7 @@ class HasilPrediksiController extends Controller
             'waktu',
             'kelas',
         )->findOrFail($id);
-        
+
 
         $relasi_sosmed = Sosmed::all();
         $relasi_keuntungan = Keuntungan::all();
@@ -50,12 +53,11 @@ class HasilPrediksiController extends Controller
             'relasi_sosmed',
             'relasi_keuntungan',
             'relasi_pengaruh_event',
+            'relasi_kenaikan_keuntungan',
             'relasi_produk',
             'relasi_waktu',
             'relasi_kelas',
         ));
-
-        
     }
 
     public function destroy($id)
@@ -82,7 +84,7 @@ class HasilPrediksiController extends Controller
             'created_at' => now(),
         ]);
 
-        
-        return back()->with('success', 'Data Berhasil Disimpan');
+
+        return redirect('perhitungan_prediksi')->with('success', 'Berhasil');
     }
 }

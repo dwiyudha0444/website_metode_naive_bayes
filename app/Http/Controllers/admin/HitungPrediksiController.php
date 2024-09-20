@@ -144,6 +144,8 @@ class HitungPrediksiController extends Controller
     {
         HitungPrediksi::truncate();  // Menghapus semua data dan reset auto-increment
 
-        return redirect('hasil_hitung_prediksi')->with('success', 'Berhasil Menghapus Semua Data');
+        return redirect(session('previous_url'))->with('success', 'Berhasil Menghapus Semua Data');
+
+
     }
 }

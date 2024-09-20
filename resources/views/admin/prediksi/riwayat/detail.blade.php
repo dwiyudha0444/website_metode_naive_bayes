@@ -25,7 +25,6 @@
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama</th>
                                         <th class="text-center">Nilai</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,23 +70,6 @@
                                 </tbody>
                             </table>
 
-                            <h4 class="card-title mt-4">Selected Sosial Media</h4>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Berpengaruh</th>
-                                        <th class="text-center">Tidak Berpengaruh</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="selected-sosmed-table-body">
-                                    <!-- Data yang dipilih akan muncul di sini -->
-                                </tbody>
-                            </table>
-
-
-
                             <h4 class="card-title">Keuntungan</h4>
                             <table class="table table-bordered">
                                 <thead>
@@ -119,23 +101,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
-                            <h4 class="card-title mt-4">Selected Keuntungan</h4>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Berpengaruh</th>
-                                        <th class="text-center">Tidak Berpengaruh</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="selected-keuntungan-table-body">
-                                    <!-- Data yang dipilih akan muncul di sini -->
-                                </tbody>
-                            </table>
-
-                            <!-- Tabel-tabel lainnya mengikuti pola yang sama -->
 
                             <h4 class="card-title">Pengaruh Event</h4>
                             <table class="table table-bordered">
@@ -169,7 +134,7 @@
                                 </tbody>
                             </table>
 
-                            <h4 class="card-title mt-4">Selected Pengaruh Event</h4>
+                            <h4 class="card-title">Kenaikan Keuntungan</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -177,13 +142,31 @@
                                         <th class="text-center">Nama</th>
                                         <th class="text-center">Berpengaruh</th>
                                         <th class="text-center">Tidak Berpengaruh</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="selected-pengaruh-event-table-body">
-                                    <!-- Data yang dipilih akan muncul di sini -->
+                                <tbody id="kenaikan-keuntungan-table-body">
+                                    @foreach ($hasil_prediksi->kenaikan_keuntungan as $data)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $data->id }}</td>
+                                            <td class="text-center align-middle">{{ $data->nama }}</td>
+                                            <td class="text-center align-middle">{{ $data->b }}</td>
+                                            <td class="text-center align-middle">{{ $data->tb }}</td>
+                                            <td class="text-center align-middle">
+                                                <form class="add-form"
+                                                    data-target="selected-kenaikan-keuntungan-table-body">
+                                                    @csrf
+                                                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                                                    <input type="hidden" name="b" value="{{ $data->b }}">
+                                                    <input type="hidden" name="tb" value="{{ $data->tb }}">
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-
 
                             <h4 class="card-title">Produk</h4>
                             <table class="table table-bordered">
@@ -216,7 +199,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <h4 class="card-title mt-4">Selected Product</h4>
+
+                            <h4 class="card-title">Waktu</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -224,14 +208,30 @@
                                         <th class="text-center">Nama</th>
                                         <th class="text-center">Berpengaruh</th>
                                         <th class="text-center">Tidak Berpengaruh</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="selected-product-table-body">
-                                    <!-- Data yang dipilih akan muncul di sini -->
+                                <tbody id="waktu-table-body">
+                                    @foreach ($hasil_prediksi->waktu as $data)
+                                        <tr>
+                                            <td class="text-center align-middle">{{ $data->id }}</td>
+                                            <td class="text-center align-middle">{{ $data->nama }}</td>
+                                            <td class="text-center align-middle">{{ $data->b }}</td>
+                                            <td class="text-center align-middle">{{ $data->tb }}</td>
+                                            <td class="text-center align-middle">
+                                                <form class="add-form" data-target="selected-waktu-table-body">
+                                                    @csrf
+                                                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                                                    <input type="hidden" name="b" value="{{ $data->b }}">
+                                                    <input type="hidden" name="tb" value="{{ $data->tb }}">
+                                                    <button type="submit" class="btn btn-primary add-button">Add</button>
+                                                </form>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-
-
 
                             <!-- Tabel Gabungan -->
                             <table class="table table-bordered">
@@ -247,18 +247,11 @@
                                 <tbody id="selected-data-table-body">
                                     <!-- Data yang dipilih akan muncul di sini -->
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="3" class="text-center">Total</th>
-                                        <th id="total-berpengaruh" class="text-center"></th>
-                                        <th id="total-tidak-berpengaruh" class="text-center"></th>
-                                    </tr>
-                                </tfoot>
                             </table>
                             <form id="save-to-database-form" method="POST" action="/save-to-database">
                                 @csrf
                                 <input type="hidden" name="data" id="data-input">
-                                <button type="submit" class="btn btn-success">Simpan ke Database</button>
+                                <button type="submit" class="btn btn-success">Hitung</button>
                             </form>
 
                         </div>
@@ -269,35 +262,38 @@
 
 
         </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        function sendDataToServer() {
-            const tableIds = [
-                'selected-sosmed-table-body',
-                'selected-keuntungan-table-body',
-                'selected-pengaruh-event-table-body',
-                'selected-product-table-body'
-            ];
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                function sendDataToServer() {
+                    const tableIds = [
+                        'selected-sosmed-table-body',
+                        'selected-keuntungan-table-body',
+                        'selected-pengaruh-event-table-body',
+                        'selected-product-table-body',
+                        'selected-waktu-table-body', // Tambahkan tabel waktu
+                        'selected-kenaikan-keuntungan-table-body' // Tambahkan tabel kenaikan keuntungan
+                    ];
 
-            let allData = [];
 
-            tableIds.forEach(tableId => {
-                let storedData = JSON.parse(localStorage.getItem(tableId)) || [];
-                allData = allData.concat(storedData);
+                    let allData = [];
+
+                    tableIds.forEach(tableId => {
+                        let storedData = JSON.parse(localStorage.getItem(tableId)) || [];
+                        allData = allData.concat(storedData);
+                    });
+
+                    document.getElementById('data-input').value = JSON.stringify(allData);
+
+                    document.getElementById('save-to-database-form').submit();
+                }
+
+                // Pasang event listener untuk tombol "Simpan ke Database"
+                document.querySelector('.btn-success').addEventListener('click', function(event) {
+                    event.preventDefault(); // Mencegah form submit default
+                    sendDataToServer();
+                });
             });
-
-            document.getElementById('data-input').value = JSON.stringify(allData);
-
-            document.getElementById('save-to-database-form').submit();
-        }
-
-        // Pasang event listener untuk tombol "Simpan ke Database"
-        document.querySelector('.btn-success').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah form submit default
-            sendDataToServer();
-        });
-    });
-</script>
+        </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -312,8 +308,11 @@
                         'selected-sosmed-table-body': 'Sosial Media',
                         'selected-keuntungan-table-body': 'Keuntungan',
                         'selected-pengaruh-event-table-body': 'Pengaruh Event',
-                        'selected-product-table-body': 'Produk'
+                        'selected-product-table-body': 'Produk',
+                        'selected-waktu-table-body': 'Waktu', // Tambahkan waktu
+                        'selected-kenaikan-keuntungan-table-body': 'Kenaikan Keuntungan' // Tambahkan kenaikan keuntungan
                     };
+
 
                     let targetTableBody = document.getElementById('selected-data-table-body');
                     let totalBerpengaruh = 1;
