@@ -10,6 +10,7 @@ use App\Models\Keuntungan;
 use App\Models\PengaruhEvent;
 use App\Models\HitungPrediksi;
 use App\Models\Produk;
+use App\Models\Kelas;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -121,6 +122,11 @@ class HitungPrediksiController extends Controller
 
     public function indexDetail()
     {
+        $dataKelas = Kelas::all();
+
+        $nilaiB = Kelas::where('id', 1)->pluck('nilai')->first();
+        $nilaiTB = Kelas::where('id', 2)->pluck('nilai')->first();
+
         // Mengambil semua nilai dari kolom b
         $dataB = HitungPrediksi::pluck('b');
 
@@ -136,15 +142,19 @@ class HitungPrediksiController extends Controller
             return $carry * $item;
         }, 1);
 
+        $totalFinalB = $totalPerkalianB * $nilaiB;
+        $totalFinalTB = $totalPerkalianTB * $nilaiTB;
+
+
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('admin.prediksi.riwayat.hasil', compact('data','totalPerkalianB','totalPerkalianTB'));
+        return view('admin.prediksi.riwayat.hasil', compact('dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
     }
 
     public function destroyAll()
     {
         HitungPrediksi::truncate();  // Menghapus semua data dan reset auto-increment
 
-        return redirect(session('previous_url'))->with('success', 'Berhasil Menghapus Semua Data');
+        return redirect(session('previous_url'))->with('success', 'Berhasil Riset');
 
 
     }

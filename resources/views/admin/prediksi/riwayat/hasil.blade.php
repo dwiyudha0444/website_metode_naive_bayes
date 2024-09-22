@@ -59,14 +59,36 @@
                                                         <td>{{ $use->tb }}</td>
                                                     </tr>
                                                 @endforeach
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    {{-- <td>{{ $totalPerkalianB }}</td>
-                                                    <td>{{ $totalPerkalianB }}</td> --}}
-                                                </tr>
                                             </tbody>
                                         </table>
+
+                                        <h4 class="card-title mt-5">Kelas</h4>
+                                        <table class="table table-bordered">
+                                            <thead>
+
+                                                <tr>
+                                                    <th> # </th>
+                                                    <th> Nama </th>
+                                                    <th> Nilai </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($dataKelas as $use)
+                                                    <tr>
+                                                        <th scope="row">{{ $no++ }}</th>
+
+                                                        <td>{{ $use->nama }}</td>
+                                                        <td>{{ $use->nilai }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                
+                                            </tbody>
+                                        </table>
+                                        <p>{{ $totalFinalB }}</p>
+                                        <p>{{ $totalFinalTB }}</p>
                                         <form method="POST" action="{{ route('destroy_all') }}">
                                             @csrf
                                             @method('DELETE')
