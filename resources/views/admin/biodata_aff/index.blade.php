@@ -45,12 +45,15 @@
                                     @php
                                         $no = 1;
                                     @endphp
+                                    @php
+                                        use Carbon\Carbon;
+                                    @endphp
                                     @foreach ($biodata as $bio)
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
 
                                             <td>{{ $bio->nama }}</td>
-                                            <td>{{ $bio->umur }}</td>
+                                            <td>{{ Carbon::parse($bio->umur)->age }}</td>
                                             <td>{{ $bio->waktu_bergabung }}</td>
                                             <td>
 

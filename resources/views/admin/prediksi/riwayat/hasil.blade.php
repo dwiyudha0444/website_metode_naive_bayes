@@ -17,7 +17,7 @@
                                 </ol>
                             </nav>
                         </div>
-<a href="{{ route('download_pdf') }}" class="btn btn-primary btn-sm">Download PDF</a>
+                        <a href="{{ route('download_pdf') }}" class="btn btn-primary btn-sm">Download PDF</a>
 
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
@@ -85,11 +85,36 @@
                                                         <td>{{ $use->nilai }}</td>
                                                     </tr>
                                                 @endforeach
-                                                
+
                                             </tbody>
                                         </table>
-                                        <p>{{ $totalFinalB }}</p>
+
+                                        <p class="mt-5">{{ $totalFinalB }}</p>
                                         <p>{{ $totalFinalTB }}</p>
+
+                                        @if ($totalFinalB > $totalFinalTB)
+                                            <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+                                                <p>{{ $totalFinalB }}</p>
+                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil prediksi untuk
+                                                    keuntungan affiliator berpengaruh sehingga berhubungan adanya studi
+                                                    kasus penutupan toko luar negeri oleh pihak shopee indonesia</p>
+                                            </div>
+                                        @elseif($totalFinalB < $totalFinalTB)
+                                            <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+                                                <p>{{ $totalFinalTB }}</p>
+                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil prediksi untuk
+                                                    keuntungan affiliator tidak berpengaruh sehingga berhubungan adanya
+                                                    studi kasus penutupan toko luar negeri oleh pihak shopee indonesia
+                                                </p>
+                                            </div>
+                                        @else
+                                            <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+                                                <p>Kedua nilai sama besar: {{ $totalFinalB }}</p>
+                                            </div>
+                                        @endif
+
+
+
                                         <form method="POST" action="{{ route('destroy_all') }}">
                                             @csrf
                                             @method('DELETE')

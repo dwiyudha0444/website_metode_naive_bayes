@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Umur</label>
+                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="umur" value="{{ $biodata->umur }}"
                                             class="form-control" id="exampleInputMobile" placeholder="Nama">
