@@ -22,6 +22,6 @@ class DataLatih extends Model
 
     public function biodata()
     {
-        return $this->belongsTo(Biodata::class,'id_biodata');
+        return $this->belongsTo(Biodata::class, 'id_biodata', 'id_user');
     }
 }

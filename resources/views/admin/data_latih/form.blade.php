@@ -23,18 +23,11 @@
                                 @csrf
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label">Nama</label>
+                                    <label class="col-sm-3 col-form-label">ID Pengguna</label>
                                     <div class="col-sm-9">
-                                        <select class="form-select" name="id_biodata">
-                                            <option selected>-- Pilih biodata --</option>
-                                            @foreach ($rel_biodata as $ob)
-                                                @php
-                                                    $sel2 = old('id_biodata') == $ob->id ? 'selected' : '';
-                                                @endphp
-                                                <option value="{{ $ob->id }}" {{ $sel2 }}>{{ $ob->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <!-- Input field untuk menampilkan id pengguna yang sedang login -->
+                                        <input type="text" class="form-control" name="id_biodata"
+                                            value="{{ Auth::user()->id }}" readonly>
                                     </div>
                                 </div>
 

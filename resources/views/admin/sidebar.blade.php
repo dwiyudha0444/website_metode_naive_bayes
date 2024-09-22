@@ -34,9 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('prediksi') }}">Data Prediksi</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ url('hitung_prediksi') }}">Hidtung Prediksi</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </li>
@@ -51,13 +51,13 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Daftar Affiliate</a>
+                        <a class="nav-link" href="{{ url('biodata_aff') }}">Daftar Affiliate</a>
                     </li>
                 </ul>
             </div>
         </li>
 
-        {{-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <span class="menu-title">User</span>
                 <i class="menu-arrow"></i>
@@ -70,7 +70,7 @@
                     </li>
                 </ul>
             </div>
-        </li> --}}
+        </li>
         {{-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
                 <span class="menu-title">Icons</span>

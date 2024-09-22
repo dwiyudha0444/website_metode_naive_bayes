@@ -18,6 +18,6 @@ class Biodata extends Model
 
     public function datalatih()
     {
-        return $this->hasMany(DataLatih::class);
+        return $this->hasMany(DataLatih::class,'id_biodata','id_user');
     }
 }

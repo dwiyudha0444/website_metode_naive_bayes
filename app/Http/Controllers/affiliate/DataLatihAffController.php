@@ -13,9 +13,17 @@ class DataLatihAffController extends Controller
 {
     public function index()
     {
-        $datalatih = DataLatih::orderBy('id', 'DESC')->get();
+        // Mendapatkan ID pengguna yang sedang login
+        $userId = Auth::id();
+    
+        // Mengambil data berdasarkan ID pengguna yang sedang login
+        $datalatih = DataLatih::where('id_biodata', $userId)
+                              ->orderBy('id', 'DESC')
+                              ->get();
+    
         return view('affiliate.datalatih.index', compact('datalatih'));
     }
+    
 
     public function create()
     {

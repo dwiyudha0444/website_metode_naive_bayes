@@ -45,6 +45,7 @@ Route::post('/register-proses', [RegisterController::class, 'register_proses'])-
 
 //admin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboardAff', [DashboardController::class, 'indexAff'])->name('dashboardAff');
 //data latih
 Route::get('/datalatih', [DataLatihController::class, 'index'])->name('datalatih');
 
@@ -76,6 +77,15 @@ Route::post('/save-to-database', [HitungPrediksiController::class, 'saveSelected
 
 Route::get('/perhitungan_prediksi', [HitungPrediksiController::class, 'indexDetail'])->name('perhitungan_prediksi');
 Route::delete('/destroy_all', [HitungPrediksiController::class, 'destroyAll'])->name('destroy_all');
+
+Route::get('/biodata_aff', [BiodataController::class, 'indexAff'])->name('biodata_aff');
+Route::get('/biodata_form_aff', [BiodataController::class, 'createAff'])->name('biodata_form_aff');
+Route::post('/biodata_store_aff', [BiodataController::class, 'storeAff'])->name('biodata_store_aff');
+
+Route::get('/biodata_edit_aff/{id}', [BiodataController::class, 'editAff'])->name('biodata_edit_aff');
+Route::put('/biodata_update_aff/{id}', [BiodataController::class, 'updateAff'])->name('biodata_update_aff');
+
+Route::delete('/biodata_destroy_aff/{id}', [BiodataController::class, 'destroyAff'])->name('biodata_destroy_aff');
 
 // routes/web.php
 Route::post('/add_data', [HasilPrediksiController::class, 'addData'])->name('add_data');

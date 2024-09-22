@@ -26265,13 +26265,15 @@ dl li {
 
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
-  width: calc(100% - 260px);
-  min-height: calc(100vh - 70px);
+  width: 100%; /* Ubah ini agar memenuhi seluruh lebar layar */
+  min-height: 100vh; /* Ubah ini agar memenuhi tinggi layar penuh */
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
+  margin: 0; /* Tambahkan ini untuk menghapus margin */
 }
+
 @media (max-width: 991px) {
   .main-panel {
     margin-left: 0;

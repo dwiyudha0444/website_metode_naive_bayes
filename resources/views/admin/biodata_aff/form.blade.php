@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('affiliate.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -16,51 +16,49 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Tambah User</h4>
+                            <h4 class="card-title">Tambah Biodata</h4>
                             <p class="card-description"> </p>
-                            <form class="forms-sample" method="POST" action="{{ route('store_user') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('biodata_store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group row">
+                                    <div class="col-sm-9">
+                                        <input type="hidden" name="id_user" value="{{ Auth::user()->id }}"
+                                            class="form-control" id="exampleInputEmail2">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="exampleInputEmail2"
-                                            placeholder="Email">
+                                        <input type="text" name="nama" class="form-control" id="exampleInputEmail2"
+                                            placeholder="Nama">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Umur</label>
                                     <div class="col-sm-9">
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail2"
-                                            placeholder="Email">
+                                        <input type="date" name="umur" class="form-control" id="exampleInputMobile"
+                                            placeholder="Umur">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="roleSelect" class="col-sm-3 col-form-label">Role</label>
+                                    <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Waktu
+                                        Bergabung</label>
                                     <div class="col-sm-9">
-                                        <select name="role" class="form-control" id="roleSelect">
-                                            <option value="">-- Select Role --</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="afiliator">Afiliator</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" name="password" class="form-control"
-                                            id="exampleInputPassword2" placeholder="Password">
+                                        <input type="date" name="waktu_bergabung" class="form-control"
+                                            id="exampleInputPassword2" placeholder="Waktu Bergabung">
                                     </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
