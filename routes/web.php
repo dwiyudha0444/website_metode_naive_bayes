@@ -18,7 +18,8 @@ use App\Http\Controllers\admin\HitungPrediksiController;
 use App\Http\Controllers\affiliate\BiodataController;
 use App\Http\Controllers\affiliate\DashboardAffController;
 use App\Http\Controllers\affiliate\DataLatihAffController;
-use App\Models\HasilPrediksi;
+
+use App\Http\Controllers\downloadPdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +117,5 @@ Route::post('/form_data_latih_aff', [DataLatihAffController::class, 'store'])->n
 Route::get('/form_data_latih_edit_aff/{id}', [DataLatihAffController::class, 'edit'])->name('edit_data_latih_aff');
 Route::put('/data_latih/update_aff/{id}', [DataLatihAffController::class, 'update'])->name('update_data_latih_aff');
 Route::delete('/data_latih_destroy_aff/{id}', [DataLatihAffController::class, 'destroy'])->name('destroy_data_latih_aff');
+
+Route::get('/download-pdf', [downloadPdfController::class, 'downloadPdf'])->name('download_pdf');
