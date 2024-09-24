@@ -38,7 +38,7 @@
                                         <th> Nama </th>
                                         <th> Umur </th>
                                         <th> Waktu Bergabung</th>
-                                        <th> Action </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>

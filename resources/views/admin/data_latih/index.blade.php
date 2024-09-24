@@ -42,7 +42,6 @@
                                         <th> Produk </th>
                                         <th> Waktu </th>
                                         <th> Kelas </th>
-                                        <th> Action </th>
                                     </tr>
                                 </thead>
                                 <tbody>

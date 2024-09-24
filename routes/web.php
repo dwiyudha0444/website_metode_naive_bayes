@@ -72,6 +72,23 @@ Route::get('/hasil_hitung_prediksi', [HitungPrediksiController::class, 'create']
 Route::post('/hasil_hitung_prediksi', [HitungPrediksiController::class, 'store'])->name('store_hasil_hitung_prediksi');
 Route::delete('/hasil_hitung_prediksi/delete-all', [HitungPrediksiController::class, 'destroyAll'])->name('hasil_hitung_prediksi.destroyAll');
 
+
+//prediksi aff
+Route::get('/prediksi_aff', [PrediksiController::class, 'index_aff'])->name('prediksi_aff');
+Route::post('/prediksi_aff', [PrediksiController::class, 'store_aff'])->name('store_prediksi_aff');
+
+Route::get('/riwayat_prediksi_aff', [HasilPrediksiController::class, 'index_aff'])->name('riwayat_prediksi_aff');
+
+Route::delete('/riwayat_prediksi_destroy_aff/{id}', [HasilPrediksiController::class, 'destroy_aff'])->name('destroy_riwayat_prediksi_aff');
+Route::get('/riwayat_prediksi_detail_aff/{id}', [HasilPrediksiController::class, 'show_aff'])->name('riwayat_prediksi_detail_aff');
+
+Route::get('/hitung_prediksi_aff', [HitungPrediksiController::class, 'index_aff'])->name('hitung_prediksi_aff');
+Route::post('/hitung_prediksi_aff', [HitungPrediksiController::class, 'showForm_aff'])->name('form.show_aff');
+
+Route::get('/hasil_hitung_prediksi_aff', [HitungPrediksiController::class, 'create_aff'])->name('create_hasil_hitung_prediksi_aff');
+Route::post('/hasil_hitung_prediksi_aff', [HitungPrediksiController::class, 'store_aff'])->name('store_hasil_hitung_prediksi_aff');
+Route::delete('/hasil_hitung_prediksi/delete-all_aff', [HitungPrediksiController::class, 'destroyAll_aff'])->name('hasil_hitung_prediksi.destroyAll_aff');
+
 Route::get('/hasil/{id}', [HitungPrediksiController::class, 'show'])->name('hasil');
 Route::post('/save-selected-data', [HitungPrediksiController::class, 'saveSelectedData']);
 Route::post('/save-to-database', [HitungPrediksiController::class, 'saveSelectedData']);

@@ -31,6 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('datalatihAff') }}">Data Latih</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('prediksi_aff') }}">Data Prediksi</a>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -111,11 +114,11 @@
                             </ul>
                         </div>
                     </li> --}}
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="docs/documentation.html" target="_blank">
                 <span class="menu-title">Documentation</span>
                 <i class="mdi mdi-file-document-box menu-icon"></i>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>

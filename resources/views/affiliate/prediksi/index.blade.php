@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('affiliate.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -12,7 +12,7 @@
                 </nav>
             </div>
 
-            <a href="{{ url('riwayat_prediksi') }}" class="btn btn-primary">Data Tersimpan</a>
+            <a href="{{ url('riwayat_prediksi_aff') }}" class="btn btn-primary">Data Tersimpan</a>
 
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">

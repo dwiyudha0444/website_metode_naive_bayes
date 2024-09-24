@@ -111,11 +111,6 @@
                 </ul>
             </div>
         </li> --}}
-        <li class="nav-item">
-            <a class="nav-link" href="docs/documentation.html" target="_blank">
-                <span class="menu-title">Laporan</span>
-                <i class="mdi mdi-file-document-box menu-icon"></i>
-            </a>
-        </li>
+
     </ul>
 </nav>
