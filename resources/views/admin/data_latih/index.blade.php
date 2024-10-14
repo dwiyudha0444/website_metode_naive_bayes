@@ -51,12 +51,14 @@
                                     @foreach ($datalatih as $use)
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
-                                            @empty( $use->biodata->nama )
-                                            <td><p>kosong</p></td>
+                                            @empty($use->biodata->nama)
+                                                <td>
+                                                    <p>kosong</p>
+                                                </td>
                                             @else
-                                            <td>{{ $use->biodata->nama }}</td>
+                                                <td>{{ $use->biodata->nama }}</td>
                                             @endempty
-                                            
+
                                             <td>{{ $use->sosmed }}</td>
                                             <td>{{ $use->keuntungan }}</td>
                                             <td>{{ $use->pengaruh_event }}</td>
@@ -68,8 +70,7 @@
                                                 <form method="POST" action="{{ route('destroy_data_latih', $use->id) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-danger btn-sm">Hapus</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
 
                                                     <a class="btn btn-warning btn-sm"
                                                         href="{{ url('form_data_latih_edit', $use->id) }}">Edit</a>
@@ -79,11 +80,235 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <style>
+                                /* Mengatur kontainer untuk teks tengah */
+                                .chart-container {
+                                    text-align: center;
+                                    /* Menempatkan elemen di tengah secara horizontal */
+                                    margin-top: 20px;
+                                    /* Menambahkan jarak di atas grafik */
+                                }
+
+                                /* Kontainer untuk tabel dan grafik */
+                                .flex-container {
+                                    display: flex;
+                                    /* Mengatur kontainer sebagai flex */
+                                    justify-content: space-between;
+                                    /* Menjaga jarak antara tabel dan grafik */
+                                    align-items: flex-start;
+                                    /* Menjaga agar tabel dan grafik sejajar di bagian atas */
+                                    margin: 20px;
+                                    /* Jarak di sekitar kontainer */
+                                }
+
+                                /* Tabel dan Chart */
+                                .table-container {
+                                    flex: 1;
+                                    /* Mengatur agar tabel mengambil ruang yang tersedia */
+                                    margin-right: 20px;
+                                    /* Jarak antara tabel dan grafik */
+                                }
+
+                                .chart-container {
+                                    flex: 1;
+                                    /* Mengatur agar grafik mengambil ruang yang tersedia */
+                                }
+
+                                /* Ukuran canvas */
+                                canvas {
+                                    display: block;
+                                    /* Membuat elemen block untuk margin auto bekerja */
+                                    margin: 0 auto;
+                                    /* Menempatkan chart di tengah secara horizontal */
+                                    width: 100%;
+                                    /* Lebar 100% dari kontainer */
+                                    height: 300px;
+                                    /* Mengatur tinggi tetap */
+                                }
+
+                                table {
+                                    width: 100%;
+                                    /* Memastikan tabel menggunakan seluruh lebar */
+                                    margin-bottom: 20px;
+                                    /* Jarak antara tabel dan grafik */
+                                }
+                            </style>
+
+                            <div class="flex-container">
+                                <div class="table-container">
+                                    <!-- Tabel untuk Total Sosmed -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Sosmed</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($sosmedTotals as $data)
+                                                <tr>
+                                                    <td>{{ $data->sosmed }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabel untuk Keuntungan -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Keuntungan</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($keuntungan as $data)
+                                                <tr>
+                                                    <td>{{ $data->keuntungan }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabel untuk Pengaruh Event -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Pengaruh Event</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($pengaruh_event as $data)
+                                                <tr>
+                                                    <td>{{ $data->pengaruh_event }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="chart-container">
+                                    <canvas id="sosmedChart"></canvas>
+                                    <canvas id="keuntunganChart"></canvas>
+                                    <canvas id="pengaruhEventChart"></canvas>
+                                </div>
+                            </div>
+
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script>
+                                // Grafik untuk Total Sosmed
+                                var ctx1 = document.getElementById('sosmedChart').getContext('2d');
+                                var sosmedChart = new Chart(ctx1, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($sosmedTotals as $data)
+                                                "{{ $data->sosmed }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Sosmed',
+                                            data: [
+                                                @foreach ($sosmedTotals as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Grafik untuk Keuntungan
+                                var ctx2 = document.getElementById('keuntunganChart').getContext('2d');
+                                var keuntunganChart = new Chart(ctx2, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($keuntungan as $data)
+                                                "{{ $data->keuntungan }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Keuntungan',
+                                            data: [
+                                                @foreach ($keuntungan as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Grafik untuk Pengaruh Event
+                                var ctx3 = document.getElementById('pengaruhEventChart').getContext('2d');
+                                var pengaruhEventChart = new Chart(ctx3, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($pengaruh_event as $data)
+                                                "{{ $data->pengaruh_event }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Pengaruh Event',
+                                            data: [
+                                                @foreach ($pengaruh_event as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
@@ -96,5 +321,7 @@
             </div>
         </footer>
         <!-- partial -->
+
+
     </div>
 @endsection
