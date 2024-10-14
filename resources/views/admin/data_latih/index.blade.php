@@ -190,12 +190,31 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <!-- Tabel untuk Kenaikan Keuntungan -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Kenaikan Keuntungan</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($kenaikan_keuntungan as $data)
+                                                <tr>
+                                                    <td>{{ $data->kenaikan_keuntungan }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div class="chart-container">
                                     <canvas id="sosmedChart"></canvas>
                                     <canvas id="keuntunganChart"></canvas>
                                     <canvas id="pengaruhEventChart"></canvas>
+                                    <canvas id="kenaikanKeuntunganChart"></canvas>
                                 </div>
                             </div>
 
@@ -299,7 +318,41 @@
                                         }
                                     }
                                 });
+
+                                // Grafik untuk Kenaikan Keuntungan
+                                var ctx4 = document.getElementById('kenaikanKeuntunganChart').getContext('2d');
+                                var kenaikanKeuntunganChart = new Chart(ctx4, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($kenaikan_keuntungan as $data)
+                                                "{{ $data->kenaikan_keuntungan }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Kenaikan Keuntungan',
+                                            data: [
+                                                @foreach ($kenaikan_keuntungan as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
                             </script>
+
 
 
                         </div>
