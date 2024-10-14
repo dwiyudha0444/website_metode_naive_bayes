@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('affiliate.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -16,15 +16,15 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Edit Data Latih</h4>
+                            <h4 class="card-title">Edit Data Keuntungan</h4>
                             <p class="card-description"> </p>
                             <form class="forms-sample" method="POST"
-                                action="{{ route('update_data_latih', $datalatih->id) }}"
+                                action="{{ route('update_data_latih_aff', $datalatih->id) }}"
                                 enctype="multipart/form-datalatih">
                                 @csrf
                                 @method('PUT')
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
                                         <select class="form-select" name="id_biodata">
@@ -36,6 +36,15 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div> --}}
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-3 col-form-label">ID Pengguna</label>
+                                    <div class="col-sm-9">
+                                        <!-- Input field untuk menampilkan id pengguna yang sedang login -->
+                                        <input type="text" class="form-control" name="id_biodata"
+                                            value="{{ Auth::user()->id }}" readonly>
                                     </div>
                                 </div>
 

@@ -43,15 +43,6 @@ class BiodataController extends Controller
 
     public function createAff()
     {
-        // Cek apakah user yang sedang login sudah memiliki biodata
-        $existingData = Biodata::where('id_user', Auth::user()->id)->first();
-
-        if ($existingData) {
-            // Jika sudah ada, kembalikan pesan error
-            return redirect()->route('biodata_aff')->with('error', 'Anda hanya bisa membuat satu biodata.');
-        }
-
-        // Jika belum ada data, lanjutkan ke form create
         return view('admin.biodata_aff.form');
     }
 
@@ -125,7 +116,7 @@ class BiodataController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('biodata')
+        return redirect()->route('biodata_aff')
             ->with('success', 'Data Berhasil Diubah');
     }
 
@@ -137,14 +128,14 @@ class BiodataController extends Controller
             'waktu_bergabung' => 'required',
         ]);
 
-        DB::table('biodata_aff')->where('id', $id)->update([
+        DB::table('biodata')->where('id', $id)->update([
             'nama' => $request->nama,
             'umur' => $request->umur,
             'waktu_bergabung' => $request->waktu_bergabung,
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('biodata_aff')
+        return redirect()->route('biodata')
             ->with('success', 'Data Berhasil Diubah');
     }
 

@@ -53,7 +53,7 @@
                                             <td>
 
                                                 <form method="POST"
-                                                    action="{{ route('destroy_riwayat_prediksi', $use->id) }}">
+                                                    action="{{ route('destroy_riwayat_prediksi_aff', $use->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

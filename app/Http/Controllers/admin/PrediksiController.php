@@ -694,6 +694,6 @@ class PrediksiController extends Controller
         DB::table('waktu')->insert($dataWaktu);
         DB::table('kelas')->insert($dataKelas);
 
-        return redirect()->route('prediksi')->with('success', 'Data berhasil disimpan');
+        return redirect()->route('prediksi_aff')->with('success', 'Data berhasil disimpan');
     }
 }

@@ -28,7 +28,8 @@ class HasilPrediksiController extends Controller
     public function show_aff($id)
     {
         
-        session(['previous_url' => url()->previous()]);
+        session(['current_id2' => $id]);
+        session(['previous_url2' => url()->previous()]);
 
         $hasil_prediksi = HasilPrediksi::with(
             'sosmeds',
@@ -64,7 +65,7 @@ class HasilPrediksiController extends Controller
     {
         $datalatih = HasilPrediksi::findOrFail($id);
         $datalatih->delete();
-        return redirect('riwayat_prediksi')->with('success', 'Berhasil Menghapus User');
+        return redirect('riwayat_prediksi_aff')->with('success', 'Berhasil Menghapus User');
     }
 
     public function addData_aff(Request $request)
@@ -98,7 +99,7 @@ class HasilPrediksiController extends Controller
 
     public function show($id)
     {
-        
+        session(['current_id' => $id]);
         session(['previous_url' => url()->previous()]);
 
         $hasil_prediksi = HasilPrediksi::with(

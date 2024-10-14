@@ -16,9 +16,9 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Tambah Data Latih</h4>
+                            <h4 class="card-title">Tambah Data Keuntungan</h4>
                             <p class="card-description"> </p>
-                            <form class="forms-sample" method="POST" action="{{ route('store_data_latih') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('store_data_latih_aff') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -110,7 +110,7 @@
                                     <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Waktu</label>
                                     <div class="col-sm-9">
                                         <select name="waktu" class="form-select" id="waktu">
-                                            <option value="">-- Pilih Produk--</option>
+                                            <option value="">-- Pilih Waktu --</option>
                                             <option value="1">
                                                 1</option>
                                             <option value="2">

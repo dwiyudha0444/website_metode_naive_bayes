@@ -1,4 +1,4 @@
-@extends('affiliate.index')
+@extends('admin.index')
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Tambah Biodata</h4>
                             <p class="card-description"> </p>
-                            <form class="forms-sample" method="POST" action="{{ route('biodata_store') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('biodata_store_aff') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 

@@ -110,20 +110,35 @@ class HitungPrediksiController extends Controller
     public function saveSelectedData(Request $request)
     {
         $data = json_decode($request->input('data'), true);
-
+    
         foreach ($data as $item) {
             HitungPrediksi::updateOrCreate(
                 ['id' => $item['id']],
                 ['nama' => $item['nama'], 'b' => $item['b'], 'tb' => $item['tb']]
             );
         }
-
-        return redirect('perhitungan_prediksi')->with('success', 'Hasil Prediksi');
+    
+        // Ambil id dari session
+        $id = session('current_id');
+        
+        // Redirect ke halaman dengan id yang diambil dari session
+        return redirect()->route('perhitungan_prediksi', ['id' => $id])->with('success', 'Hasil Prediksi berhasil disimpan');
     }
+    
 
-    public function indexDetail()
+    public function indexDetail($id)
     {
         $dataKelas = Kelas::all();
+        
+        $hasil_prediksi = HasilPrediksi::with(
+            'sosmeds',
+            'keuntungan',
+            'pengaruh_event',
+            'kenaikan_keuntungan',
+            'produk',
+            'waktu',
+            'kelas',
+        )->findOrFail($id);
 
         $nilaiB = Kelas::where('id', 1)->pluck('nilai')->first();
         $nilaiTB = Kelas::where('id', 2)->pluck('nilai')->first();
@@ -148,7 +163,7 @@ class HitungPrediksiController extends Controller
 
 
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('admin.prediksi.riwayat.hasil', compact('dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
+        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
     }
 
     public function destroyAll()

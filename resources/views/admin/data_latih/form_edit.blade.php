@@ -16,7 +16,7 @@
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Edit Data Latih</h4>
+                            <h4 class="card-title">Edit Data Keuntungan</h4>
                             <p class="card-description"> </p>
                             <form class="forms-sample" method="POST"
                                 action="{{ route('update_data_latih', $datalatih->id) }}"

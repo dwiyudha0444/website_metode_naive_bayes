@@ -31,7 +31,7 @@
 
 
                                 <div class="form-group row">
-                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                    <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="nama" class="form-control" id="exampleInputEmail2"
                                             placeholder="Nama">
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Umur</label>
+                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                                     <div class="col-sm-9">
                                         <input type="date" name="umur" class="form-control" id="exampleInputMobile"
                                             placeholder="Umur">

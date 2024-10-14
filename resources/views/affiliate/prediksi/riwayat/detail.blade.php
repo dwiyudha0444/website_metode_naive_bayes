@@ -6,7 +6,7 @@
 
         <div class="container-scroller">
             <div class="container-fluid page-body-wrapper">
-                
+
 
 
                 <div class="main-panel">
@@ -21,8 +21,13 @@
                             </nav>
                         </div>
 
-                        <a href="{{ url('riwayat_prediksi') }}" class="btn btn-primary">Kembali</a>
-
+                        <a href="{{ url('riwayat_prediksi_aff') }}" class="btn btn-primary">Kembali</a>
+                        @php
+                            $no = 1;
+                            $no1 = 1;
+                            $no2 = 1;
+                            $no3 = 1;
+                        @endphp
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
@@ -39,7 +44,7 @@
                                             <tbody>
                                                 @foreach ($hasil_prediksi->kelas as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->nilai }}</td>
                                                     </tr>

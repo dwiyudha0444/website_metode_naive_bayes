@@ -6,7 +6,7 @@
 
         <div class="container-scroller">
             <div class="container-fluid page-body-wrapper">
-                
+
 
 
                 <div class="main-panel">
@@ -21,8 +21,21 @@
                             </nav>
                         </div>
 
-                        <a href="{{ url('riwayat_prediksi') }}" class="btn btn-primary">Kembali</a>
+                        @if (auth()->user()->role == 'admin')
+                            <a href="{{ url('riwayat_prediksi') }}" class="btn btn-primary">Kembali</a>
+                        @elseif (auth()->user()->role == 'afiliator')
+                            <a href="{{ url('riwayat_prediksi_aff') }}" class="btn btn-primary">Kembali</a>
+                        @endif
 
+                        @php
+                            $no = 1;
+                            $no1 = 1;
+                            $no2 = 1;
+                            $no3 = 1;
+                            $no4 = 1;
+                            $no5 = 1;
+                            $no6 = 1;
+                        @endphp
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
@@ -39,7 +52,7 @@
                                             <tbody>
                                                 @foreach ($hasil_prediksi->kelas as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->nilai }}</td>
                                                     </tr>
@@ -61,7 +74,7 @@
                                             <tbody id="sosmed-table-body">
                                                 @foreach ($hasil_prediksi->sosmeds as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no1++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -98,7 +111,7 @@
                                             <tbody id="keuntungan-table-body">
                                                 @foreach ($hasil_prediksi->keuntungan as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no2++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -135,7 +148,7 @@
                                             <tbody id="pengaruh-event-table-body">
                                                 @foreach ($hasil_prediksi->pengaruh_event as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no3++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -172,7 +185,7 @@
                                             <tbody id="kenaikan-keuntungan-table-body">
                                                 @foreach ($hasil_prediksi->kenaikan_keuntungan as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no4++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -210,7 +223,7 @@
                                             <tbody id="produk-table-body">
                                                 @foreach ($hasil_prediksi->produk as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no5++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -247,7 +260,7 @@
                                             <tbody id="waktu-table-body">
                                                 @foreach ($hasil_prediksi->waktu as $data)
                                                     <tr>
-                                                        <td class="text-center align-middle">{{ $data->id }}</td>
+                                                        <td class="text-center align-middle">{{ $no6++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
                                                         <td class="text-center align-middle">{{ $data->b }}</td>
                                                         <td class="text-center align-middle">{{ $data->tb }}</td>
@@ -271,11 +284,13 @@
                                             </tbody>
                                         </table>
 
+                                        <h3 class="mt-5">Data Terpilih</h3>
                                         <!-- Tabel Gabungan -->
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered mt-2">
+                                        
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">No</th>
+                                                    {{-- <th class="text-center">No</th> --}}
                                                     <th class="text-center">Kategori</th>
                                                     <th class="text-center">Nama</th>
                                                     <th class="text-center">Berpengaruh</th>
@@ -364,7 +379,8 @@
                                     storedData.forEach(item => {
                                         let newRow = document.createElement('tr');
                                         newRow.innerHTML = `
-                    <td class="text-center align-middle">${item.id}</td>
+                    <td class="text-center align-middle"  style="display: none;">${item.id}</td>
+                    
                     <td class="text-center align-middle">${tableIdMap[tableId]}</td>
                     <td class="text-center align-middle">${item.nama}</td>
                     <td class="text-center align-middle">${item.b}</td>

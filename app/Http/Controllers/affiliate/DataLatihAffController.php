@@ -36,7 +36,7 @@ class DataLatihAffController extends Controller
     
         if ($existingData) {
             // Jika sudah ada data, kembalikan dengan pesan bahwa data sudah terisi
-            return redirect()->route('datalatih')->with('error', 'Data sudah terisi, tunggu bulan selanjutnya untuk menambah data.');
+            return redirect()->route('datalatih_aff')->with('error', 'Data sudah terisi, tunggu bulan selanjutnya untuk menambah data.');
         }
     
         // Jika belum ada data, arahkan ke form input data
@@ -85,7 +85,7 @@ class DataLatihAffController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect()->route('datalatih')->with('success', 'Data Berhasil Disimpan');
+        return redirect()->route('datalatih_aff')->with('success', 'Data Berhasil Disimpan');
     }
 
 
@@ -119,7 +119,7 @@ class DataLatihAffController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('datalatih')
+        return redirect()->route('datalatih_aff')
             ->with('success', 'Data Berhasil Diubah');
     }
 
@@ -127,6 +127,6 @@ class DataLatihAffController extends Controller
     {
         $datalatih = DataLatih::findOrFail($id);
         $datalatih->delete();
-        return redirect('datalatih')->with('success', 'Berhasil Menghapus User');
+        return redirect('datalatih_aff')->with('success', 'Berhasil Menghapus User');
     }
 }

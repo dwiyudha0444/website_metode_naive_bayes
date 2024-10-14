@@ -16,7 +16,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Data Latih</h4>
+                            <h4 class="card-title">Data Keuntungan</h4>
                             <a href="{{ route('store_data_latih') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
@@ -51,8 +51,12 @@
                                     @foreach ($datalatih as $use)
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
-
+                                            @empty( $use->biodata->nama )
+                                            <td><p>kosong</p></td>
+                                            @else
                                             <td>{{ $use->biodata->nama }}</td>
+                                            @endempty
+                                            
                                             <td>{{ $use->sosmed }}</td>
                                             <td>{{ $use->keuntungan }}</td>
                                             <td>{{ $use->pengaruh_event }}</td>

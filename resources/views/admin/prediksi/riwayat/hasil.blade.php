@@ -63,48 +63,48 @@
                                             </tbody>
                                         </table>
 
-                                        <h4 class="card-title mt-5">Kelas</h4>
+                                        <h4 class="card-title">Kelas</h4>
                                         <table class="table table-bordered">
                                             <thead>
-
                                                 <tr>
-                                                    <th> # </th>
-                                                    <th> Nama </th>
-                                                    <th> Nilai </th>
+                                                    <th class="text-center">No</th>
+                                                    <th class="text-center">Nama</th>
+                                                    <th class="text-center">Nilai</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
-                                                    $no = 1;
-                                                @endphp
-                                                @foreach ($dataKelas as $use)
+                                                @foreach ($hasil_prediksi->kelas as $data)
                                                     <tr>
-                                                        <th scope="row">{{ $no++ }}</th>
-
-                                                        <td>{{ $use->nama }}</td>
-                                                        <td>{{ $use->nilai }}</td>
+                                                        <td class="text-center align-middle">{{ $no++ }}</td>
+                                                        <td class="text-center align-middle">{{ $data->nama }}</td>
+                                                        <td class="text-center align-middle">{{ $data->nilai }}</td>
                                                     </tr>
                                                 @endforeach
-
                                             </tbody>
                                         </table>
 
-                                        <p class="mt-5">{{ $totalFinalB }}</p>
-                                        <p>{{ $totalFinalTB }}</p>
+                                        <p class="mt-5">Hasil Nilai Berpengaruh adalah {{ $totalFinalB }}</p>
+                                        <p>Hasil Nilai Tidak Berpengaruh adalah {{ $totalFinalTB }}</p>
 
                                         @if ($totalFinalB > $totalFinalTB)
                                             <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
                                                 <p>{{ $totalFinalB }}</p>
-                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil prediksi untuk
-                                                    keuntungan affiliator berpengaruh sehingga berhubungan adanya studi
-                                                    kasus penutupan toko luar negeri oleh pihak shopee indonesia</p>
+                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil menunjukkan
+                                                    bahwa keuntungan affiliator “berpengaruh” terhadap adanya penutupan
+                                                    toko luar negeri oleh pihak Shopee Indonesia. Dengan adanya sistem
+                                                    ini, diharapkan para affiliator dapat menentukan strategi pemasaran
+                                                    yang tepat sehingga keuntungan kembali stabil dan promosi produk
+                                                    Shopee akan lebih fokus hanya pada UMKM
+                                                </p>
                                             </div>
                                         @elseif($totalFinalB < $totalFinalTB)
                                             <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
                                                 <p>{{ $totalFinalTB }}</p>
-                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil prediksi untuk
-                                                    keuntungan affiliator tidak berpengaruh sehingga berhubungan adanya
-                                                    studi kasus penutupan toko luar negeri oleh pihak shopee indonesia
+                                                <p>Berdasarkan parameter yang anda inputkan, maka hasil menunjukkan
+                                                    bahwa keuntungan affiliator “tidak berpengaruh” terhadap adanya
+                                                    penutupan toko luar negeri oleh pihak Shopee Indonesia. Sehingga
+                                                    tidak terdapat perbedaan keuntungan, hanya saja promosi produk
+                                                    Shopee akan lebih fokus hanya pada UMKM
                                                 </p>
                                             </div>
                                         @else

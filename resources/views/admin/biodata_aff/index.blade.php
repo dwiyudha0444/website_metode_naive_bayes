@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Biodata</h4>
-                            <a href="{{ route('biodata_form') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                            <a href="{{ route('biodata_form_aff') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
                                     <path
@@ -56,14 +56,14 @@
                                             <td>{{ $bio->waktu_bergabung }}</td>
                                             <td>
 
-                                                <form method="POST" action="{{ route('biodata_destroy', $bio->id) }}">
+                                                <form method="POST" action="{{ route('biodata_destroy_aff', $bio->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-gradient-danger btn-fw"
                                                         style="font-size: 12px; padding: 15px 12px;">Hapus</button>
 
                                                     <a class="btn btn-gradient-primary btn-fw"
-                                                        href="{{ route('biodata_edit', $bio->id) }}">Edit</a>
+                                                        href="{{ route('biodata_edit_aff', $bio->id) }}">Edit</a>
                                                 </form>
                                             </td>
                                         </tr>

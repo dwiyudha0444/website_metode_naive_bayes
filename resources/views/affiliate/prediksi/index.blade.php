@@ -239,7 +239,7 @@
                                 </div>
                             </div>
 
-                            <form class="mt-5" action="{{ route('store_prediksi') }}" method="POST">
+                            <form class="mt-5" action="{{ route('store_prediksi_aff') }}" method="POST">
                                 @csrf
 
                                 <button type="submit" class="btn btn-primary">Simpan</button>

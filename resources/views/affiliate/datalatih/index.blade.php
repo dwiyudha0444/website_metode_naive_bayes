@@ -16,7 +16,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Data Latih</h4>
+                            <h4 class="card-title">Data Keuntungan</h4>
                             <a href="{{ route('store_data_latih_aff') }}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                     height="30" fill="currentColor" title="Tambah Data Film" class="bi bi-bookmark-plus"
                                     viewBox="0 0 16 16">
@@ -62,14 +62,14 @@
                                             <td>{{ $use->kelas }}</td>
                                             <td>
 
-                                                <form method="POST" action="{{ route('destroy_data_latih', $use->id) }}">
+                                                <form method="POST" action="{{ route('destroy_data_latih_aff', $use->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         class="btn btn-danger btn-sm">Hapus</button>
 
                                                     <a class="btn btn-warning btn-sm"
-                                                        href="{{ url('form_data_latih_edit', $use->id) }}">Edit</a>
+                                                        href="{{ url('form_data_latih_edit_aff', $use->id) }}">Edit</a>
                                                 </form>
                                             </td>
                                         </tr>

@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\DataLatih;
 use App\Models\Biodata;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DataLatihController extends Controller
 {
     public function index()
     {
-        $datalatih = DataLatih::orderBy('id', 'DESC')->get();
-        return view('admin.data_latih.index', compact('datalatih'));
+        $datalatih = DataLatih::all();
+        $rel_biodata = Biodata::all();
+        return view('admin.data_latih.index', compact('datalatih','rel_biodata'));
     }
 
     public function create()
