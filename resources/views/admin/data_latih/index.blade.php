@@ -208,6 +208,61 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <!-- Tabel untuk Produk -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Produk</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($produk as $data)
+                                                <tr>
+                                                    <td>{{ $data->produk }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabel untuk Waktu -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Waktu</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($waktu as $data)
+                                                <tr>
+                                                    <td>{{ $data->waktu }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabel untuk Kelas -->
+                                    <table class="mt-5 table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Kelas</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($kelas as $data)
+                                                <tr>
+                                                    <td>{{ $data->kelas }}</td>
+                                                    <td>{{ $data->total }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
                                 </div>
 
                                 <div class="chart-container">
@@ -215,6 +270,9 @@
                                     <canvas id="keuntunganChart"></canvas>
                                     <canvas id="pengaruhEventChart"></canvas>
                                     <canvas id="kenaikanKeuntunganChart"></canvas>
+                                    <canvas id="produkChart"></canvas>
+                                    <canvas id="waktuChart"></canvas>
+                                    <canvas id="kelasChart"></canvas>
                                 </div>
                             </div>
 
@@ -351,9 +409,106 @@
                                         }
                                     }
                                 });
+
+                                // Grafik untuk Kenaikan Keuntungan
+                                var ctx4 = document.getElementById('produkChart').getContext('2d');
+                                var produkChart = new Chart(ctx4, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($produk as $data)
+                                                "{{ $data->produk }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Produk',
+                                            data: [
+                                                @foreach ($produk as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Grafik untuk Kenaikan Keuntungan
+                                var ctx4 = document.getElementById('waktuChart').getContext('2d');
+                                var waktuChart = new Chart(ctx4, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($waktu as $data)
+                                                "{{ $data->waktu }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Waktu',
+                                            data: [
+                                                @foreach ($waktu as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Grafik untuk Kenaikan Keuntungan
+                                var ctx4 = document.getElementById('kelasChart').getContext('2d');
+                                var kelasChart = new Chart(ctx4, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [
+                                            @foreach ($kelas as $data)
+                                                "{{ $data->kelas }}",
+                                            @endforeach
+                                        ],
+                                        datasets: [{
+                                            label: 'Total Kelas',
+                                            data: [
+                                                @foreach ($kelas as $data)
+                                                    {{ $data->total }},
+                                                @endforeach
+                                            ],
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        maintainAspectRatio: true,
+                                        responsive: true,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
                             </script>
-
-
 
                         </div>
                     </div>
