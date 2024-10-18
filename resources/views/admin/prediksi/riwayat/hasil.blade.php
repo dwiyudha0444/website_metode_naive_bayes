@@ -56,8 +56,8 @@
                                                         <th scope="row">{{ $no++ }}</th>
 
                                                         <td>{{ $use->nama }}</td>
-                                                        <td>{{ $use->b }}</td>
-                                                        <td>{{ $use->tb }}</td>
+                                                        <td style="color: green;">{{ $use->b }}</td>
+                                                        <td style="color: green;">{{ $use->tb }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -77,7 +77,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->nilai }}</td>
+                                                        <td style="color: green;" class="text-center align-middle">
+                                                            {{ $data->nilai }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -115,11 +116,27 @@
 
 
 
-                                        <form method="POST" action="{{ route('destroy_all') }}">
+                                        <form class="mt-3" method="POST" action="{{ route('destroy_all') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Riset</button>
                                         </form>
+
+
+                                        <div class="mt-3 p-3 alert" id="custom-alert"
+                                            style="background-color: #28a745; color: white; position: relative;">
+                                            <p>Catatan !!!</p>
+                                            <span class="close-btn" onclick="closeAlert()"
+                                                style="position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 20px;">&times;</span>
+                                        </div>
+
+                                        <script>
+                                            function closeAlert() {
+                                                var alert = document.getElementById("custom-alert");
+                                                alert.style.display = "none";
+                                            }
+                                        </script>
+
 
                                     </div>
                                 </div>
