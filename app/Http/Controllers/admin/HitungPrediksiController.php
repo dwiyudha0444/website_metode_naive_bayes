@@ -393,7 +393,7 @@ class HitungPrediksiController extends Controller
         // Simpan path PDF ke database
         Arsip::create([
             'nama' => 'nama',
-            'id_user' => 'id_user',
+            'id_user' => $request->id_user,
             'pdf_path' => $pdfPath,
         ]);
     
