@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Arsip extends Model
 {
-    protected $table = 'biodata';
+    protected $table = 'arsip';
     
     protected $fillable = [
-        'nama',
-        'tb',
-        'b',
-        'nilai'
+        'id_user',
+        'pdf_path'
     ];
 
 }

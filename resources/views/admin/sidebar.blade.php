@@ -32,11 +32,11 @@
                         <a class="nav-link" href="{{ url('datalatih') }}">Data Keuntungan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('prediksi') }}">Data Prediksi</a>
+                        <a class="nav-link" href="{{ url('prediksipp') }}">Data Prediksi</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ url('hitung_prediksi') }}">Hidtung Prediksi</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('pdf_arsip') }}">Data Arsip</a>
+                    </li>
                 </ul>
             </div>
         </li>

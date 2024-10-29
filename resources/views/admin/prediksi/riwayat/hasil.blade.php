@@ -121,34 +121,13 @@
                                             <button type="submit" class="btn btn-danger btn-sm">Riset</button>
                                         </form>
 
+
                                         <!-- Form untuk tombol Save -->
+
                                         <form class="mt-3" method="POST" action="{{ route('save_data_prediksi') }}">
                                             @csrf
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    @php
-                                                        $no = 1;
-                                                    @endphp
-                                                    @foreach ($data5 as $use)
-                                                        <tr>
-                                                            <th scope="row">{{ $no++ }}</th>
-                                                            <td>{{ $use->nama }}</td>
-                                                            <td style="color: green;">{{ $use->b }}</td>
-                                                            <td style="color: green;">{{ $use->tb }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="4">
-                                                                <input type="hidden" name="nama[]"
-                                                                    value="{{ $use->nama }}">
-                                                                <input type="hidden" name="b[]"
-                                                                    value="{{ $use->b }}">
-                                                                <input type="hidden" name="tb[]"
-                                                                    value="{{ $use->tb }}">
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                            <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                                            <!-- Tambahkan input lain yang diperlukan -->
                                             <button type="submit" class="btn btn-success btn-sm">Save</button>
                                         </form>
 

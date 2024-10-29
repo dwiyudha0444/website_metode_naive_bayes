@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArsipController;
 use Illuminate\Support\Facades\Route;
 
 //auth
@@ -13,6 +14,7 @@ use App\Http\Controllers\admin\DataLatihController;
 use App\Http\Controllers\admin\PrediksiController;
 use App\Http\Controllers\admin\HasilPrediksiController;
 use App\Http\Controllers\admin\HitungPrediksiController;
+use App\Http\Controllers\admin\ArsipControllerController;
 
 //affiliate
 use App\Http\Controllers\affiliate\BiodataController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\affiliate\DashboardAffController;
 use App\Http\Controllers\affiliate\DataLatihAffController;
 
 use App\Http\Controllers\downloadPdfController;
+use App\Models\Arsip;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/data_latih_destroy/{id}', [DataLatihController::class, 'destroy'])->name('destroy_data_latih');
 
     //prediksi
-    Route::get('/prediksi', [PrediksiController::class, 'index'])->name('prediksi');
+    Route::get('/prediksipp', [PrediksiController::class, 'index'])->name('prediksi');
     Route::post('/prediksi', [PrediksiController::class, 'store'])->name('store_prediksi');
 
     Route::get('/riwayat_prediksi', [HasilPrediksiController::class, 'index'])->name('riwayat_prediksi');
@@ -97,7 +100,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/perhitungan_prediksi/{id}', [HitungPrediksiController::class, 'indexDetail'])->name('perhitungan_prediksi');
     Route::delete('/destroy_all', [HitungPrediksiController::class, 'destroyAll'])->name('destroy_all');
-    Route::post('/save_data_prediksi', [HitungPrediksiController::class, 'store_data_arsip'])->name('save_data_prediksi');
 
 
     Route::get('/biodata_aff', [BiodataController::class, 'indexAff'])->name('biodata_aff');
@@ -140,4 +142,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/data_latih_destroy_aff/{id}', [DataLatihAffController::class, 'destroy'])->name('destroy_data_latih_aff');
 
     Route::get('/download-pdf', [downloadPdfController::class, 'downloadPdf'])->name('download_pdf');
+
+    Route::post('/save_data_prediksi', [HitungPrediksiController::class, 'saveDataPrediksi'])->name('save_data_prediksi');
+    Route::get('/pdf_arsip', [ArsipController::class, 'index'])->name('pdf_arsip');
 });

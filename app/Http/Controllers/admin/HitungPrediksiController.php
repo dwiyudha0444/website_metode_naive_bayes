@@ -13,7 +13,10 @@ use App\Models\Produk;
 use App\Models\Kelas;
 use Carbon\Carbon;
 use App\Models\Arsip;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class HitungPrediksiController extends Controller
 {
@@ -174,8 +177,8 @@ class HitungPrediksiController extends Controller
 
 
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
-        $data5 = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','hasil_prediksi2','dataKelas','data','data5','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
+        // $data5 = HitungPrediksi::orderBy('id', 'DESC')->get();
+        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','hasil_prediksi2','dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
     }
 
     public function destroyAll()
@@ -189,22 +192,37 @@ class HitungPrediksiController extends Controller
 
     public function store_data_arsip(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|array',
-            'b' => 'required|array',
-            'tb' => 'required|array',
-        ]);
+        // $request->validate([
+        //     'nama' => 'required|array',
+        //     'b' => 'required|array',
+        //     'tb' => 'required|array',
+        // ]);
     
-        // Menyimpan data dari nama, b, tb, dan nilai
-        for ($i = 0; $i < count($request->nama); $i++) {
-            DB::table('arsip')->insert([
-                'nama' => $request->nama[$i],
-                'b' => $request->b[$i],
-                'tb' => $request->tb[$i],
-                'updated_at' => now(),
-                'created_at' => now(),
-            ]);
-        }
+        // // Menyimpan data dari nama, b, tb, dan nilai
+        // for ($i = 0; $i < count($request->nama); $i++) {
+        //     DB::table('arsip')->insert([
+        //         'nama' => $request->nama[$i],
+        //         'b' => $request->b[$i],
+        //         'tb' => $request->tb[$i],
+        //         'updated_at' => now(),
+        //         'created_at' => now(),
+        //     ]);
+        // }
+
+        // $request->validate([
+        //     'nama' => 'required|array',
+        //     'nilai' => 'required|array',
+        // ]);
+    
+        // // Menyimpan data dari nama, b, tb, dan nilai
+        // for ($i = 0; $i < count($request->nama); $i++) {
+        //     DB::table('arsip')->insert([
+        //         'nama' => $request->nama[$i],
+        //         'nilai' => $request->nilai[$i],
+        //         'updated_at' => now(),
+        //         'created_at' => now(),
+        //     ]);
+        // }
     
         return redirect()->route('pepe')->with('success', 'Data Berhasil Disimpan');
     }
@@ -355,4 +373,31 @@ class HitungPrediksiController extends Controller
 
 
     }
+
+    public function saveDataPrediksi(Request $request)
+    {
+        // Data untuk di-render ke PDF
+        $data = [
+            'id_user' => $request->id_user,
+        ];
+    
+        // Generate PDF menggunakan library DomPDF
+        $pdf = PDF::loadView('pdf_template', $data);
+    
+        // Tentukan path ke folder public
+        $pdfPath = 'prediksi/pdf/' . time() . '_hasil_prediksi.pdf';
+    
+        // Simpan file PDF di folder public
+        file_put_contents(public_path($pdfPath), $pdf->output());
+    
+        // Simpan path PDF ke database
+        Arsip::create([
+            'nama' => 'nama',
+            'id_user' => 'id_user',
+            'pdf_path' => $pdfPath,
+        ]);
+    
+        return redirect()->back()->with('success', 'Data prediksi berhasil disimpan sebagai PDF');
+    }
+    
 }
