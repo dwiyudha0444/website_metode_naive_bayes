@@ -1,67 +1,114 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Penerimaan Barang</title>
-    <link rel="stylesheet" href="stylepdf.css">
+    <title>Hasil Prediksi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2,
+        h3,
+        h4 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        .signature {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature div {
+            width: 45%;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="logo.png" alt="Logo ScaleOcean" class="logo">
-            <h2>SURAT PENERIMAAN BARANG</h2>
-        </div>
-        
-        <div class="info">
-            <p>Nomor: <span>__________</span></p>
-            <p>Tanggal: <span>__________</span></p>
-        </div>
+    <h2>PT. INDO MARCO PRIMA</h2>
+    <h3>Bukti Pengeluaran Barang</h3>
+    <p>Tanggal: {{ date('d-m-Y') }}</p>
 
-        <div class="kepada">
-            <p>Kepada,</p>
-            <p>[Nama Pengirim Barang]</p>
-            <p>[Alamat Pengirim Barang]</p>
-            <p>[Telp Pengirim Barang]</p>
-        </div>
+    @php
+        $no1 = 1;
+    @endphp
+    <h4>Data Hasil Prediksi</h4>
+    <table>
+        <tr>
+            <th>ID User</th>
+            <th>Total Final B</th>
+            <th>Total Final TB</th>
+        </tr>
+        <tr>
+            <td>{{ $no1++ }}</td>
+            <td>{{ $totalFinalB }}</td>
+            <td>{{ $totalFinalTB }}</td>
+        </tr>
+    </table>
 
-        <p>Dengan hormat,</p>
-        <p>Melalui surat berikut, saya ingin menyampaikan bahwa toko telah menerima pengiriman barang dengan detail terlampir.</p>
-
-        <table>
-            <thead>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>Berpengaruh</th>
+                <th>Tidak Berpengaruh</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $no = 1;
+            @endphp
+            @foreach ($data2 as $use)
                 <tr>
-                    <th>No.</th>
-                    <th>Nama Barang</th>
-                    <th>Jumlah</th>
-                    <th>Kondisi</th>
+                    <th scope="row">{{ $no++ }}</th>
+                    <td>{{ $use->nama }}</td>
+                    <td style="color: green;">{{ $use->b }}</td>
+                    <td style="color: green;">{{ $use->tb }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Nama Barang 1</td>
-                    <td>10</td>
-                    <td>Baik</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Nama Barang 2</td>
-                    <td>5</td>
-                    <td>Rusak</td>
-                </tr>
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
 
-        <p>Demikian surat penerimaan ini dibuat sebagai bentuk pertanggungjawaban berkaitan dengan barang yang diterima. Kami menjamin bahwa barang tersebut dijaga dengan baik dan digunakan sesuai kebutuhan toko.</p>
-
-        <div class="signature">
-            <p>Hormat kami,</p>
-            <br><br><br>
-            <p>[Nama dan Tanda Tangan Penerima]</p>
-            <p>[Jabatan Penerima]</p>
-            <p>[Toko Anda]</p>
-        </div>
+    <div class="signature">
+        <div>Yang Mengeluarkan,</div>
+        <div>Mengetahui,</div>
+        <br><br><br>
+        <div>__________________</div>
+        <div>Anton</div>
     </div>
 </body>
+
 </html>

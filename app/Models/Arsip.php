@@ -11,7 +11,9 @@ class Arsip extends Model
     
     protected $fillable = [
         'id_user',
-        'pdf_path'
+        'pdf_path',
+        'tb',
+        'b'
     ];
 
 }

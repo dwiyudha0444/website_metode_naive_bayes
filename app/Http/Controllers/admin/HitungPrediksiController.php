@@ -32,7 +32,7 @@ class HitungPrediksiController extends Controller
         // Kirim variabel ke view
         return view('admin.hitung_prediksi.index', compact('hasil_prediksi', 'relasi_sosmed', 'relasi_keuntungan', 'relasi_pengaruh_event'));
     }
-    
+
 
     public function showForm(Request $request)
     {
@@ -114,26 +114,26 @@ class HitungPrediksiController extends Controller
     public function saveSelectedData(Request $request)
     {
         $data = json_decode($request->input('data'), true);
-    
+
         foreach ($data as $item) {
             HitungPrediksi::updateOrCreate(
                 ['id' => $item['id']],
                 ['nama' => $item['nama'], 'b' => $item['b'], 'tb' => $item['tb']]
             );
         }
-    
+
         // Ambil id dari session
         $id = session('current_id');
-        
+
         // Redirect ke halaman dengan id yang diambil dari session
         return redirect()->route('perhitungan_prediksi', ['id' => $id])->with('success', 'Hasil Prediksi berhasil disimpan');
     }
-    
+
 
     public function indexDetail($id)
     {
         $dataKelas = Kelas::all();
-        
+
         $hasil_prediksi = HasilPrediksi::with(
             'sosmeds',
             'keuntungan',
@@ -178,7 +178,7 @@ class HitungPrediksiController extends Controller
 
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
         // $data5 = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','hasil_prediksi2','dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
+        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi', 'hasil_prediksi2', 'dataKelas', 'data', 'totalFinalB', 'totalFinalTB', 'totalPerkalianB', 'totalPerkalianTB'));
     }
 
     public function destroyAll()
@@ -186,8 +186,6 @@ class HitungPrediksiController extends Controller
         HitungPrediksi::truncate();  // Menghapus semua data dan reset auto-increment
 
         return redirect(session('previous_url'))->with('success', 'Berhasil Riset');
-
-
     }
 
     public function store_data_arsip(Request $request)
@@ -197,7 +195,7 @@ class HitungPrediksiController extends Controller
         //     'b' => 'required|array',
         //     'tb' => 'required|array',
         // ]);
-    
+
         // // Menyimpan data dari nama, b, tb, dan nilai
         // for ($i = 0; $i < count($request->nama); $i++) {
         //     DB::table('arsip')->insert([
@@ -213,7 +211,7 @@ class HitungPrediksiController extends Controller
         //     'nama' => 'required|array',
         //     'nilai' => 'required|array',
         // ]);
-    
+
         // // Menyimpan data dari nama, b, tb, dan nilai
         // for ($i = 0; $i < count($request->nama); $i++) {
         //     DB::table('arsip')->insert([
@@ -223,12 +221,12 @@ class HitungPrediksiController extends Controller
         //         'created_at' => now(),
         //     ]);
         // }
-    
+
         return redirect()->route('pepe')->with('success', 'Data Berhasil Disimpan');
     }
-    
-    
-    
+
+
+
 
     public function index_aff()
     {
@@ -242,7 +240,7 @@ class HitungPrediksiController extends Controller
         // Kirim variabel ke view
         return view('affiliate.hitung_prediksi.index', compact('hasil_prediksi', 'relasi_sosmed', 'relasi_keuntungan', 'relasi_pengaruh_event'));
     }
-    
+
 
     public function showForm_aff(Request $request)
     {
@@ -362,7 +360,7 @@ class HitungPrediksiController extends Controller
 
 
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('affiliate.prediksi.riwayat.hasil', compact('dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
+        return view('affiliate.prediksi.riwayat.hasil', compact('dataKelas', 'data', 'totalFinalB', 'totalFinalTB', 'totalPerkalianB', 'totalPerkalianTB'));
     }
 
     public function destroyAll_aff()
@@ -370,34 +368,52 @@ class HitungPrediksiController extends Controller
         HitungPrediksi::truncate();  // Menghapus semua data dan reset auto-increment
 
         return redirect(session('previous_url'))->with('success', 'Berhasil Riset');
-
-
     }
 
     public function saveDataPrediksi(Request $request)
     {
-        // Data untuk di-render ke PDF
+        // Hitung totalFinalB dan totalFinalTB
+        $nilaiB = Kelas::where('id', 1)->pluck('nilai')->first();
+        $nilaiTB = Kelas::where('id', 2)->pluck('nilai')->first();
+
+        $dataB = HitungPrediksi::pluck('b');
+        $dataTB = HitungPrediksi::pluck('tb');
+
+        $totalPerkalianB = $dataB->reduce(fn($carry, $item) => $carry * $item, 1);
+        $totalPerkalianTB = $dataTB->reduce(fn($carry, $item) => $carry * $item, 1);
+
+        $totalFinalB = $totalPerkalianB * $nilaiB;
+        $totalFinalTB = $totalPerkalianTB * $nilaiTB;
+
+        // Ambil data untuk di-render ke PDF
+        $data2 = HitungPrediksi::orderBy('id', 'DESC')->get();
+
+
+        // Data untuk PDF
         $data = [
+            'nama' => $request->nama,
             'id_user' => $request->id_user,
+            'tb' => $request->tb,
+            'b' => $request->b,
+            'totalFinalB' => $totalFinalB,
+            'totalFinalTB' => $totalFinalTB,
+            'data2' => $data2, // Gabungkan data2 ke dalam array data
         ];
-    
-        // Generate PDF menggunakan library DomPDF
+
+        // Generate PDF menggunakan DomPDF
         $pdf = PDF::loadView('pdf_template', $data);
-    
-        // Tentukan path ke folder public
         $pdfPath = 'prediksi/pdf/' . time() . '_hasil_prediksi.pdf';
-    
-        // Simpan file PDF di folder public
+
         file_put_contents(public_path($pdfPath), $pdf->output());
-    
-        // Simpan path PDF ke database
+
         Arsip::create([
-            'nama' => 'nama',
+            'nama' => $request->nama,
             'id_user' => $request->id_user,
+            'tb' => $request->tb,
+            'b' => $request->b,
             'pdf_path' => $pdfPath,
         ]);
-    
+
         return redirect()->back()->with('success', 'Data prediksi berhasil disimpan sebagai PDF');
     }
-    
 }

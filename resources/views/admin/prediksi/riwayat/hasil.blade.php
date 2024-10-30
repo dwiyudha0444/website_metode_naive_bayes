@@ -39,12 +39,11 @@
                                         @endif
                                         <table class="table table-bordered">
                                             <thead>
-
                                                 <tr>
-                                                    <th> # </th>
-                                                    <th> Nama </th>
-                                                    <th> Berpengaruh </th>
-                                                    <th> Tidak Berpengaruh </th>
+                                                    <th>#</th>
+                                                    <th>Nama</th>
+                                                    <th>Berpengaruh</th>
+                                                    <th>Tidak Berpengaruh</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -54,7 +53,6 @@
                                                 @foreach ($data as $use)
                                                     <tr>
                                                         <th scope="row">{{ $no++ }}</th>
-
                                                         <td>{{ $use->nama }}</td>
                                                         <td style="color: green;">{{ $use->b }}</td>
                                                         <td style="color: green;">{{ $use->tb }}</td>
@@ -62,6 +60,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+
 
                                         <h4 class="card-title">Kelas</h4>
                                         <table class="table table-bordered">
@@ -127,6 +126,10 @@
                                         <form class="mt-3" method="POST" action="{{ route('save_data_prediksi') }}">
                                             @csrf
                                             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" name="tb" value="{{ $totalFinalTB }}">
+                                            <input type="hidden" name="b" value="{{ $totalFinalB }}">
+
+
                                             <!-- Tambahkan input lain yang diperlukan -->
                                             <button type="submit" class="btn btn-success btn-sm">Save</button>
                                         </form>
