@@ -145,4 +145,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/save_data_prediksi', [HitungPrediksiController::class, 'saveDataPrediksi'])->name('save_data_prediksi');
     Route::get('/pdf_arsip', [ArsipController::class, 'index'])->name('pdf_arsip');
+
+    Route::delete('/arsip/{id}', [ArsipController::class, 'destroy'])->name('arsip.destroy');
+
+    Route::get('/pdf_arsip_aff', [ArsipController::class, 'index_aff'])->name('pdf_arsip');
+
+    Route::delete('/arsip_aff/{id}', [ArsipController::class, 'destroy_aff'])->name('arsip.destroy');
 });

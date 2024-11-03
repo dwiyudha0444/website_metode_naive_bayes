@@ -58,30 +58,14 @@
 
 <body>
     <h2>PT. INDO MARCO PRIMA</h2>
-    <h3>Bukti Pengeluaran Barang</h3>
+    <h3>Prediksi Pendapatan Bulan Depan</h3>
     <p>Tanggal: {{ date('d-m-Y') }}</p>
 
-    @php
-        $no1 = 1;
-    @endphp
     <h4>Data Hasil Prediksi</h4>
-    <table>
-        <tr>
-            <th>ID User</th>
-            <th>Total Final B</th>
-            <th>Total Final TB</th>
-        </tr>
-        <tr>
-            <td>{{ $no1++ }}</td>
-            <td>{{ $totalFinalB }}</td>
-            <td>{{ $totalFinalTB }}</td>
-        </tr>
-    </table>
-
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
+                <th>No</th>
                 <th>Nama</th>
                 <th>Berpengaruh</th>
                 <th>Tidak Berpengaruh</th>
@@ -102,12 +86,56 @@
         </tbody>
     </table>
 
+    @php
+        $no1 = 1;
+    @endphp
+    <h4>Data Kelas</h4>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Berpengaruh</th>
+            <th>Tidak Berpengaruh</th>
+        </tr>
+        <tr>
+            <td>{{ $no1++ }}</td>
+            <td>{{ $totalFinalB }}</td>
+            <td>{{ $totalFinalTB }}</td>
+        </tr>
+    </table>
+
+    @if ($totalFinalB > $totalFinalTB)
+        <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+            <p>{{ $totalFinalB }}</p>
+            <p>Berdasarkan parameter yang anda inputkan, maka hasil menunjukkan
+                bahwa keuntungan affiliator “berpengaruh” terhadap adanya penutupan
+                toko luar negeri oleh pihak Shopee Indonesia. Dengan adanya sistem
+                ini, diharapkan para affiliator dapat menentukan strategi pemasaran
+                yang tepat sehingga keuntungan kembali stabil dan promosi produk
+                Shopee akan lebih fokus hanya pada UMKM
+            </p>
+        </div>
+    @elseif($totalFinalB < $totalFinalTB)
+        <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+            <p>{{ $totalFinalTB }}</p>
+            <p>Berdasarkan parameter yang anda inputkan, maka hasil menunjukkan
+                bahwa keuntungan affiliator “tidak berpengaruh” terhadap adanya
+                penutupan toko luar negeri oleh pihak Shopee Indonesia. Sehingga
+                tidak terdapat perbedaan keuntungan, hanya saja promosi produk
+                Shopee akan lebih fokus hanya pada UMKM
+            </p>
+        </div>
+    @else
+        <div class="mt-5 p-3" style="background-color: #28a745; color: white;">
+            <p>Kedua nilai sama besar: {{ $totalFinalB }}</p>
+        </div>
+    @endif
+
     <div class="signature">
         <div>Yang Mengeluarkan,</div>
         <div>Mengetahui,</div>
         <br><br><br>
         <div>__________________</div>
-        <div>Anton</div>
+        <div>{{ Auth::user()->name }}</div>
     </div>
 </body>
 

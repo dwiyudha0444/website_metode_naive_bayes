@@ -28,11 +28,14 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ url('datalatihAff') }}">Data Keuntungan</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('riwayat_prediksi_aff') }}">Data Prediksi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('prediksi_aff') }}">Data Prediksi</a>
+                        <a class="nav-link" href="{{ url('pdf_arsip_aff') }}">Data Arsip</a>
                     </li>
                 </ul>
             </div>

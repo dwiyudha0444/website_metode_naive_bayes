@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('affiliate.index')
 @section('content')
     <div class="content-wrapper">
         <div class="page-header mt-5">
