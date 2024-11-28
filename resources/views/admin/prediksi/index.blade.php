@@ -153,17 +153,17 @@
                                                     <td class="text-center align-middle">Lebih dari Rp 1.000.000</td>
                                                     <td class="text-center align-middle">{{ $kenaikanKeuntunganSatuB }}
                                                     </td>
-                                                    <td class="text-center align-middle">{{ $keuntunganSatuTB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganSatuTB }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center align-middle">Lebih dari Rp 500.000</td>
-                                                    <td class="text-center align-middle">{{ $keuntunganDuaB }}</td>
-                                                    <td class="text-center align-middle">{{ $keuntunganDuaTB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganDuaB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganDuaTB }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center align-middle">Kurang dari Rp 500.000</td>
-                                                    <td class="text-center align-middle">{{ $keuntunganTigaB }}</td>
-                                                    <td class="text-center align-middle">{{ $keuntunganTigaTB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganTigaB }}</td>
+                                                    <td class="text-center align-middle">{{ $kenaikanKeuntunganTigaTB }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

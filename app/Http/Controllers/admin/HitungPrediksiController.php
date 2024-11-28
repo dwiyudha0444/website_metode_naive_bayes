@@ -12,6 +12,7 @@ use App\Models\HitungPrediksi;
 use App\Models\Produk;
 use App\Models\Kelas;
 use Carbon\Carbon;
+use App\Models\Arsip;
 use Illuminate\Support\Facades\DB;
 
 class HitungPrediksiController extends Controller
@@ -140,6 +141,16 @@ class HitungPrediksiController extends Controller
             'kelas',
         )->findOrFail($id);
 
+        $hasil_prediksi2 = HasilPrediksi::with(
+            'sosmeds',
+            'keuntungan',
+            'pengaruh_event',
+            'kenaikan_keuntungan',
+            'produk',
+            'waktu',
+            'kelas',
+        )->findOrFail($id);
+
         $nilaiB = Kelas::where('id', 1)->pluck('nilai')->first();
         $nilaiTB = Kelas::where('id', 2)->pluck('nilai')->first();
 
@@ -163,7 +174,8 @@ class HitungPrediksiController extends Controller
 
 
         $data = HitungPrediksi::orderBy('id', 'DESC')->get();
-        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','dataKelas','data','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
+        $data5 = HitungPrediksi::orderBy('id', 'DESC')->get();
+        return view('admin.prediksi.riwayat.hasil', compact('hasil_prediksi','hasil_prediksi2','dataKelas','data','data5','totalFinalB','totalFinalTB','totalPerkalianB','totalPerkalianTB'));
     }
 
     public function destroyAll()
@@ -173,6 +185,28 @@ class HitungPrediksiController extends Controller
         return redirect(session('previous_url'))->with('success', 'Berhasil Riset');
 
 
+    }
+
+    public function store_data_arsip(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'tb' => 'required',
+            'b' => 'required',
+            'nilai' => 'required',
+        ]);
+
+        // Insert data dari request form
+        DB::table('arsip')->insert([
+            'nama' => $request->nama,
+            'tb' => $request->tb,
+            'b' => $request->b,
+            'nilai' => $request->nilai,
+            'updated_at' => now(),
+            'created_at' => now(),
+        ]);
+
+        return redirect()->route('pepe')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function index_aff()

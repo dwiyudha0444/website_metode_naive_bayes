@@ -97,6 +97,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/perhitungan_prediksi/{id}', [HitungPrediksiController::class, 'indexDetail'])->name('perhitungan_prediksi');
     Route::delete('/destroy_all', [HitungPrediksiController::class, 'destroyAll'])->name('destroy_all');
+    Route::post('/save_data_prediksi', [HitungPrediksiController::class, 'store_data_arsip'])->name('save_data_prediksi');
+
 
     Route::get('/biodata_aff', [BiodataController::class, 'indexAff'])->name('biodata_aff');
     Route::get('/biodata_form_aff', [BiodataController::class, 'createAff'])->name('biodata_form_aff');

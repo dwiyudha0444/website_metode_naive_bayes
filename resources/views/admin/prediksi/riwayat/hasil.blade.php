@@ -114,13 +114,71 @@
                                             </div>
                                         @endif
 
-
-
+                                        <!-- Form untuk tombol Riset -->
                                         <form class="mt-3" method="POST" action="{{ route('destroy_all') }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Riset</button>
                                         </form>
+
+                                        <!-- Form untuk tombol Save -->
+                                        <form class="mt-3" method="POST" action="{{ route('save_data_prediksi') }}">
+                                            @csrf
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    @php
+                                                        $no = 1;
+                                                    @endphp
+                                                    @foreach ($data5 as $use)
+                                                        <tr>
+                                                            <th scope="row">{{ $no++ }}</th>
+                                                            <td>{{ $use->nama }}</td>
+                                                            <td style="color: green;">{{ $use->b }}</td>
+                                                            <td style="color: green;">{{ $use->tb }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <input  name="nama[]"
+                                                                    value="{{ $use->nama }}">
+                                                                <input  name="berpengaruh[]"
+                                                                    value="{{ $use->b }}">
+                                                                <input  name="tidak_berpengaruh[]"
+                                                                    value="{{ $use->tb }}">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    @foreach ($hasil_prediksi->kelas as $data)
+                                                        <tr>
+                                                            <td class="text-center align-middle">{{ $no++ }}
+                                                            </td>
+                                                            <td class="text-center align-middle">{{ $data->nama }}
+                                                            </td>
+                                                            <td style="color: green;" class="text-center align-middle">
+                                                                {{ $data->nilai }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <input  name="kelas[]"
+                                                                    value="{{ $data->nama }}">
+                                                                <input  name="nilai[]"
+                                                                    value="{{$data->nilai }}">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                        </form>
+
+
+
+
 
 
                                         <div class="mt-3 p-3 alert" id="custom-alert"

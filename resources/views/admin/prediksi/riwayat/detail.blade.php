@@ -1,6 +1,7 @@
 @include('admin.head')
 
 <body>
+
     <div class="container-scroller">
         @include('admin.navbar')
 
@@ -66,9 +67,9 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
-                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden"></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="sosmed-table-body">
@@ -76,8 +77,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no1++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-sosmed-table-body">
@@ -103,9 +104,9 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
-                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
+                                                    <th class="text-center"></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="keuntungan-table-body">
@@ -113,8 +114,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no2++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-keuntungan-table-body">
@@ -140,8 +141,8 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -150,8 +151,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no3++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-pengaruh-event-table-body">
@@ -177,8 +178,8 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden" >Tidak Berpengaruh</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -187,8 +188,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no4++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-kenaikan-keuntungan-table-body">
@@ -215,8 +216,8 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -225,8 +226,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no5++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-product-table-body">
@@ -252,8 +253,8 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -262,8 +263,8 @@
                                                     <tr>
                                                         <td class="text-center align-middle">{{ $no6++ }}</td>
                                                         <td class="text-center align-middle">{{ $data->nama }}</td>
-                                                        <td class="text-center align-middle">{{ $data->b }}</td>
-                                                        <td class="text-center align-middle">{{ $data->tb }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->b }}</td>
+                                                        <td class="text-center align-middle hidden">{{ $data->tb }}</td>
                                                         <td class="text-center align-middle">
                                                             <form class="add-form"
                                                                 data-target="selected-waktu-table-body">
@@ -293,8 +294,8 @@
                                                     {{-- <th class="text-center">No</th> --}}
                                                     <th class="text-center">Kategori</th>
                                                     <th class="text-center">Nama</th>
-                                                    <th class="text-center">Berpengaruh</th>
-                                                    <th class="text-center">Tidak Berpengaruh</th>
+                                                    <th class="text-center hidden">Berpengaruh</th>
+                                                    <th class="text-center hidden">Tidak Berpengaruh</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-data-table-body">
@@ -383,8 +384,8 @@
                     
                     <td class="text-center align-middle">${tableIdMap[tableId]}</td>
                     <td class="text-center align-middle">${item.nama}</td>
-                    <td class="text-center align-middle">${item.b}</td>
-                    <td class="text-center align-middle">${item.tb}</td>`;
+                    <td class="text-center align-middle hidden">${item.b}</td>
+                    <td class="text-center align-middle hidden">${item.tb}</td>`;
                                         targetTableBody.appendChild(newRow);
 
                                         // Update total dengan perkalian
