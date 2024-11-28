@@ -190,24 +190,27 @@ class HitungPrediksiController extends Controller
     public function store_data_arsip(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'tb' => 'required',
-            'b' => 'required',
-            'nilai' => 'required',
+            'nama' => 'required|array',
+            'b' => 'required|array',
+            'tb' => 'required|array',
         ]);
-
-        // Insert data dari request form
-        DB::table('arsip')->insert([
-            'nama' => $request->nama,
-            'tb' => $request->tb,
-            'b' => $request->b,
-            'nilai' => $request->nilai,
-            'updated_at' => now(),
-            'created_at' => now(),
-        ]);
-
+    
+        // Menyimpan data dari nama, b, tb, dan nilai
+        for ($i = 0; $i < count($request->nama); $i++) {
+            DB::table('arsip')->insert([
+                'nama' => $request->nama[$i],
+                'b' => $request->b[$i],
+                'tb' => $request->tb[$i],
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]);
+        }
+    
         return redirect()->route('pepe')->with('success', 'Data Berhasil Disimpan');
     }
+    
+    
+    
 
     public function index_aff()
     {
